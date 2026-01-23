@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:16:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/22 18:44:58 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:14:47 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	size_map(t_map *map, char *file)
 {
 	malloc_map(map, file);
+	malloc_lines(map, file);
+	verif_map(map);
 }
 
 

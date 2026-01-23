@@ -6,7 +6,7 @@
 #    By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 17:05:10 by asauvage          #+#    #+#              #
-#    Updated: 2026/01/22 18:36:40 by asauvage         ###   ########.fr        #
+#    Updated: 2026/01/23 18:13:27 by asauvage         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 SRC = main.c \
-	  utils.c \
+	  malloc_map.c \
 	  free_tab.c
 
 NAME = so_long

@@ -6,15 +6,15 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/22 18:36:48 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:33:16 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -40,8 +40,16 @@ typedef struct s_map
 	char	**crd;
 }			t_map;
 
-int		open_file(char *file);
-void	malloc_map(t_map *map, char *file);
-void	free_tab(char **tab);
+typedef struct s_element
+{
+	int		c;
+	int		e;
+	int		p;
+}			t_element;
+
+int			open_file(char *file);
+void		malloc_height(t_map *map, char *file);
+void		malloc_lines(t_map *map, char *file);
+void		free_tab(char **tab);
 
 #endif

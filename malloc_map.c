@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/22 18:45:37 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:12:41 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	malloc_lines(t_map *map, char *file)
 	close(fd);
 }
 
-void	malloc_map(t_map *map, char *file)
+void	malloc_height(t_map *map, char *file)
 {
 	int		fd;
 	char	*line;
@@ -89,7 +89,6 @@ void	malloc_map(t_map *map, char *file)
 	map->crd = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->crd)
 		exit(1);
-	map->crd[map->height] = 0;
 	close(fd);
-	malloc_lines(map, file);
+	map->crd[map->height] = 0;
 }
