@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/23 18:33:16 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:54:42 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ typedef struct s_win
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
-	char	*addr;
-	int		line_length;
-	int		endian;
 	int		width;
 	int		height;
 }			t_win;
@@ -37,19 +34,25 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		zoom;
-	char	**crd;
-}			t_map;
-
-typedef struct s_element
-{
+	int		p_x;
+	int		p_y;
 	int		c;
 	int		e;
 	int		p;
-}			t_element;
+	char	**crd;
+	char	**tmp_map;
+}			t_map;
 
 int			open_file(char *file);
+int			flood_fill(t_map *map, int y, int x);
+char		**ft_strstrdup(char **tab, t_map *map);
 void		malloc_height(t_map *map, char *file);
 void		malloc_lines(t_map *map, char *file);
 void		free_tab(char **tab);
+void		start_player(t_map *map);
+void		verif_walls(t_map *map, int y, int x);
+void		verif_obj_map(t_map *map);
+void		verif_acces_collectible(t_map *map, int y, int x);
+void		init_win(t_win *win, t_map *map, char *file);
 
 #endif

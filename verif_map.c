@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:15:09 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/23 18:47:37 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:46:37 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,18 @@ void	error_wall_map(char **map)
 	exit(1);
 }
 
-void	error_obj_map(t_map *map, t_element elt)
+void	error_obj_map(t_map *map)
 {
 	int	i;
 
-	if (elt.e == 0)
+	if (map->e == 0)
 		ft_putstr_fd("The exit is missing\n", 2);
-	if (elt.c == 0)
-		ft_putstr_fd("A colllectible is missing\n", 2);
-	if (elt.p == 0)
+	if (map->c == 0)
+		ft_putstr_fd("A collectible is missing\n", 2);
+	if (map->p == 0)
 		ft_putstr_fd("The player is missing\n", 2);
+	if (map->p > 1)
+		ft_putstr_fd("There is too many players\n", 2);
 	i = 0;
 	while (map->crd && map->crd[i])
 	{
@@ -47,66 +49,78 @@ void	error_obj_map(t_map *map, t_element elt)
 	}
 	if (map->crd)
 		free(map->crd);
-	exit (1);
+	exit(1);
 }
 
 void	verif_obj_map(t_map *map)
 {
-	t_element	elt;
-	int			i;
-	int			j;
+	int	y;
+	int	x;
 
-	i = 0;
-	j = 0;
-	ft_memset(&elt, 0, sizeof(t_element));
-	while (map->crd[i][j])
+	y = 0;
+	map->e = 0;
+	map->c = 0;
+	map->p = 0;
+	while (map->crd[y])
 	{
-		j = 0;
-		while (map->crd[i][j])
+		x = 0;
+		while (map->crd[y][x])
 		{
-			if (map->crd[i][j] == 'E')
-				elt.e += 1;
-			if (map->crd[i][j] == 'C')
-				elt.c += 1;
-			if (map->crd[i][j] == 'P')
-				elt.p += 1;
-			j++;
+			if (map->crd[y][x] == 'E')
+				map->e += 1;
+			if (map->crd[y][x] == 'C')
+				map->c += 1;
+			if (map->crd[y][x] == 'P')
+				map->p += 1;
+			x++;
 		}
-		i++;
+		y++;
 	}
-	if (elt.e < 1 || elt.c < 1 || elt.p < 1)
-		error_obj_map(map, elt);
+	if (map->e < 1 || map->c < 1 || map->p != 1)
+		error_obj_map(map);
 }
 
-void	verif_acces_collectible(t_map *map)
+void	verif_acces_collectible(t_map *map, int y, int x)
 {
-	
+	int	count_collectible;
+
+	count_collectible = flood_fill(map, y, x);
+	if (map->c == count_collectible)
+		return ;
+	else
+	{
+		if (map->c == 1)
+			ft_putstr_fd("The collectible is not accessible\n", 2);
+		else
+			ft_putstr_fd("Collectible are not accessible\n", 2);
+		exit(1);
+	}
 }
 
-void	verif_map(t_map *map)
+void	verif_walls(t_map *map, int x, int y)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map->crd && map->crd[0][i])
+	x = 0;
+	while (map->crd[0] && map->crd[0][x])
 	{
-		if (map->crd[0][i] != '1')
+		if (map->crd[0][x++] != '1')
 			error_wall_map(map->crd);
 	}
-	i = 0;
-	while (map->crd && map->crd[i][0])
+	y = 0;
+	while (map->crd[y] && map->crd[y][0])
 	{
-		if (map->crd[i][0] != '1')
+		if (map->crd[y++][0] != '1')
 			error_wall_map(map->crd);
 	}
-	i -= 1;
-	j = 0;
-	while (map && map->crd[i][j])
+	y = 0;
+	while (map->crd[y] && map->crd[y][map->width - 1])
 	{
-		if (map->crd[i][j] != '1')
+		if (map->crd[y++][map->width - 1] != '1')
 			error_wall_map(map->crd);
 	}
-	verif_obj_map(map);
-	verif_acces_collectible(map);
+	x = 0;
+	while (map->crd[map->height - 1] && map->crd[map->height - 1][x])
+	{
+		if (map->crd[map->height - 1][x++] != '1')
+			error_wall_map(map->crd);
+	}
 }

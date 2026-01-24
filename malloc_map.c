@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   malloc_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/23 18:12:41 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:42:32 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,24 @@ int	open_file(char *file)
 	return (fd);
 }
 
-int	verif_len_line(char *line, size_t pre_len, char **tab)
+int	verif_len_line(char **map)
 {
-	if (ft_findchar(line, '\n') != -1)
-		line[ft_strlen(line) - 1] = '\0';
-	if (pre_len != ft_strlen(line))
+	size_t	pre_len;
+	int		y;
+
+	y = 1;
+	pre_len = ft_strlen(map[0]);
+	while (map && map[y])
 	{
-		free_tab(tab);
-		ft_putstr_fd("the size of the map is wrong\n", 2);
-		exit (1);
+		if (pre_len != ft_strlen(map[y]))
+		{
+			ft_putstr_fd("the line sizes are not equal\n", 2);
+			exit(1);
+		}
+		pre_len = ft_strlen(map[y]);
+		y++;
 	}
-	return (ft_strlen(line));
+	return (pre_len);
 }
 
 void	malloc_lines(t_map *map, char *file)
@@ -47,20 +54,22 @@ void	malloc_lines(t_map *map, char *file)
 	fd = open_file(file);
 	i = -1;
 	line = get_next_line(fd);
-	map->width = ft_strlen(line) - 1;
-	while (++i < map->height - 1)
+	while (++i < map->height)
 	{
 		if (!line)
 			break ;
-		if (ft_findchar(line, '\n') != -1)
+		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		map->crd[i] = ft_strdup(line);
-		if (!map->crd[i])
-			free_tab(map->crd);
 		free(line);
+		if (!map->crd[i])
+		{
+			free_tab(map->crd);
+			exit(1);
+		}
 		line = get_next_line(fd);
-		map->width = verif_len_line(line, map->width, map->crd);
 	}
+	map->width = verif_len_line(map->crd);
 	close(fd);
 }
 
