@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 19:19:13 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/24 19:30:55 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	err_texture(t_win *win)
 		ft_putstr_fd("Floor failed to load\n", 2);
 	if (!win->player)
 		ft_putstr_fd("Failed to load player\n", 2);
-	if (!win->wall || !win->collectible || win->exit || win->player || win->floor)
+	if (!win->wall || !win->collectible || !win->exit || !win->player || !win->floor)
 		exit (1);
 }
 
@@ -70,4 +70,5 @@ void	init_win(t_win *win, t_map *map, char *file)
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
 	if (!win->win_ptr)
 		err_init(win, map);
+	texture_img(win);
 }
