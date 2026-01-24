@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:16:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 15:51:53 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/24 19:18:36 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_map(t_map *map, char *file)
 
 int	main(int ac, char **av)
 {
-	t_map map;
+	t_map	map;
 	t_win	win;
 
 	if (ac != 2)
@@ -35,10 +35,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	parse_map(&map, av[1]);
-	init_win(&win, &map, av);
-	// creat_map(&map, &win, av[1]);
-	// mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, win.img, 0, 0);
-	// my_mlx_hook(&win);
-	// mlx_loop(win.mlx_ptr);
+	init_win(&win, &map, av[1]);
+	render_map(&win, &map);
+	my_mlx_hook(&win, &map);
+	mlx_loop(win.mlx_ptr);
 	return (0);
 }

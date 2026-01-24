@@ -6,7 +6,7 @@
 #    By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 17:05:10 by asauvage          #+#    #+#              #
-#    Updated: 2026/01/24 13:00:42 by asauvage         ###   ########.fr        #
+#    Updated: 2026/01/24 18:57:40 by asauvage         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ SRC = main.c \
 	  malloc_map.c \
 	  free_tab.c \
 	  utils.c \
-	  verif_map.c
+	  verif_map.c \
+	  init_win.c \
+	  display_map.c \
+	  my_mlx_hook.c
+
 NAME = so_long
 
 LIBFT_PATH = ./libft

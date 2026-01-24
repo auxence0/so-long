@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 15:54:42 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:56:12 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct s_win
 	void	*img;
 	int		width;
 	int		height;
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+	int		width_img;
+	int		height_img;
 }			t_win;
 
 typedef struct s_map
@@ -43,6 +50,12 @@ typedef struct s_map
 	char	**tmp_map;
 }			t_map;
 
+typedef struct s_data
+{
+	t_win	*win;
+	t_map	*map;
+}			t_data;
+
 int			open_file(char *file);
 int			flood_fill(t_map *map, int y, int x);
 char		**ft_strstrdup(char **tab, t_map *map);
@@ -54,5 +67,7 @@ void		verif_walls(t_map *map, int y, int x);
 void		verif_obj_map(t_map *map);
 void		verif_acces_collectible(t_map *map, int y, int x);
 void		init_win(t_win *win, t_map *map, char *file);
+void		render_map(t_win *win, t_map *map);
+void		my_mlx_hook(t_win *win, t_map *map);
 
 #endif
