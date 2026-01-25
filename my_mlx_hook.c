@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 19:04:23 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 15:56:44 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ int	close_win(t_data *data)
 
 int	handle_keypress(int keycode, t_data *data)
 {
+	if (keycode == 119 || keycode == 65362)
+		move_player(data, -1, 0);
+	if (keycode == 115 || keycode == 65364)
+		move_player(data, 1, 0);
+	if (keycode == 97 || keycode == 65361)
+		move_player(data, 0, -1);
+	if (keycode == 100 || keycode == 65363)
+		move_player(data, 0, 1);
 	if (keycode == 65307)
 		close_win(data);
 	return (0);

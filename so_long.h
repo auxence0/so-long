@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 19:55:52 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 16:07:17 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_data
 
 int			open_file(char *file);
 int			flood_fill(t_map *map, int y, int x);
+int			close_win(t_data *data);
 char		**ft_strstrdup(char **tab, t_map *map);
 void		malloc_height(t_map *map, char *file);
 void		malloc_lines(t_map *map, char *file);
@@ -71,6 +72,6 @@ void		verif_acces_collectible(t_map *map, int y, int x);
 void		init_win(t_win *win, t_map *map, char *file);
 void		render_map(t_win *win, t_map *map);
 void		my_mlx_hook(t_win *win, t_map *map);
-void	move_player(t_map *map, int move_y, int move_x);
+void		move_player(t_data *data, int move_y, int move_x);
 
 #endif
