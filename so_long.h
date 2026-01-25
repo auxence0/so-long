@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 16:07:17 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:31:43 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void		init_win(t_win *win, t_map *map, char *file);
 void		render_map(t_win *win, t_map *map);
 void		my_mlx_hook(t_win *win, t_map *map);
 void		move_player(t_data *data, int move_y, int move_x);
+void		draw_rectangle(t_win *win);
 
 #endif

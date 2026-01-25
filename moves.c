@@ -6,16 +6,41 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 17:38:15 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:38:49 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+char	*str_movement(t_data *data, int y, int x)
+{
+	char	*str;
+
+	draw_rectangle(data->win);
+	str = ft_itoa(data->map->moves);
+	if (!str)
+		close_win(data);
+	str = ft_strjoin("move : ", str);
+	if (!str)
+		close_win(data);
+	if (x == 1)
+		str = ft_strjoin("right, ", str);
+	else if (x == -1)
+		str = ft_strjoin("left, ", str);
+	else if (y == 1)
+		str = ft_strjoin("down, ", str);
+	else if (y == -1)
+		str = ft_strjoin("up, ", str);
+	if (!str)
+		close_win(data);
+	return (str);
+}
+
 void	go_over_exit(t_data *data, int move_y, int move_x)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	char	*movement;
 
 	y = data->map->p_y + move_y;
 	x = data->map->p_x + move_x;
@@ -27,7 +52,11 @@ void	go_over_exit(t_data *data, int move_y, int move_x)
 	data->map->p_x = x;
 	data->map->pre_tile = 'E';
 	data->map->moves += 1;
-	ft_printf("move : %d\n", data->map->moves);
+	movement = str_movement(data, move_y, move_x);
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0xFF0000,
+		movement);
+	ft_printf("%s", movement);
+	free(movement);
 }
 
 void	game_win(t_data *data, int move_y, int move_x)
@@ -43,14 +72,14 @@ void	game_win(t_data *data, int move_y, int move_x)
 	data->map->p_x = x;
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
-	ft_printf("move : %d\n", data->map->moves);
 	close_win(data);
 }
 
 void	take_collectible(t_data *data, int move_y, int move_x)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	char	*movement;
 
 	y = data->map->p_y + move_y;
 	x = data->map->p_x + move_x;
@@ -65,7 +94,11 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	data->map->p_x = x;
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
-	ft_printf("move : %d\n", data->map->moves);
+	movement = str_movement(data, move_y, move_x);
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0xFF0000,
+		movement);
+	ft_printf("%s\n", movement);
+	free(movement);
 }
 
 void	move_player(t_data *data, int mv_y, int mv_x)
@@ -75,8 +108,6 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 
 	y = data->map->p_y;
 	x = data->map->p_x;
-	ft_printf("y : %d, x : %d\n", y, x);
-	ft_printf("pre_tile : %c case : %c\n", data->map->pre_tile, data->map->crd[y + mv_y][x + mv_x]);
 	if (data->map->crd[y + mv_y][x + mv_x] == '1')
 		return ;
 	if (data->map->pre_tile == '0')

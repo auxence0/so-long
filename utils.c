@@ -6,11 +6,29 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:24:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 15:45:41 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:32:52 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	draw_rectangle(t_win *win)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 50)
+	{
+		j = 0;
+		while (j < 300)
+		{
+			mlx_pixel_put(win->mlx_ptr, win->win_ptr, j, i, 0x000000);
+			j++;
+		}
+		i++;
+	}
+}
 
 char	**ft_strstrdup(char **tab, t_map *map)
 {
