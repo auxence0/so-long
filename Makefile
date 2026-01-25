@@ -6,7 +6,7 @@
 #    By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 17:05:10 by asauvage          #+#    #+#              #
-#    Updated: 2026/01/25 15:40:59 by asauvage         ###   ########.fr        #
+#    Updated: 2026/01/25 23:52:59 by asauvage         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC = main.c \
 	  init_win.c \
 	  display_map.c \
 	  my_mlx_hook.c \
-	  moves.c
+	  moves.c \
+	  view_of_player.c
 
 NAME = so_long
 

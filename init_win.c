@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 19:30:55 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 22:56:34 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,23 @@ void	texture_img(t_win *win)
 
 void	init_win(t_win *win, t_map *map, char *file)
 {
+	int	max_width;
+	int	max_height;
+
 	win->height = (map->height + 6) * 32;
 	win->width = (map->width + 6) * 32;
 	win->mlx_ptr = mlx_init();
 	if (!win->mlx_ptr)
 		err_init(win, map);
+	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
+	if (win->height > max_height || win->width > max_width)
+	{
+		ft_putstr_fd("The map is to wide\n", 2);
+		mlx_destroy_display(win->mlx_ptr);
+		free(win->mlx_ptr);
+		free_tab(map->crd);
+		exit (1);
+	}
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
 	if (!win->win_ptr)
 		err_init(win, map);

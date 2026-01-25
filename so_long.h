@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 19:31:43 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 23:54:13 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ typedef struct s_win
 	int		height;
 	void	*wall;
 	void	*floor;
-	void	*player;
+	void	*player_top;
+	void	*player_bottom;
+	void	*player_right;
+	void	*player_left;
 	void	*collectible;
 	void	*exit;
 	int		width_img;
@@ -46,6 +49,7 @@ typedef struct s_map
 	int		c;
 	int		e;
 	int		p;
+	int		s;
 	int		moves;
 	char	pre_tile;
 	char	**crd;
@@ -74,5 +78,7 @@ void		render_map(t_win *win, t_map *map);
 void		my_mlx_hook(t_win *win, t_map *map);
 void		move_player(t_data *data, int move_y, int move_x);
 void		draw_rectangle(t_win *win);
+void		add_obj(char c, t_map *map);
+void		view_player(t_data *data, int x, int y);
 
 #endif

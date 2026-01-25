@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:15:09 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 15:46:37 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 23:01:43 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,13 @@ void	verif_obj_map(t_map *map)
 	map->e = 0;
 	map->c = 0;
 	map->p = 0;
+	map->s = 0;
 	while (map->crd[y])
 	{
 		x = 0;
 		while (map->crd[y][x])
 		{
-			if (map->crd[y][x] == 'E')
-				map->e += 1;
-			if (map->crd[y][x] == 'C')
-				map->c += 1;
-			if (map->crd[y][x] == 'P')
-				map->p += 1;
+			add_obj(map->crd[y][x], map);
 			x++;
 		}
 		y++;

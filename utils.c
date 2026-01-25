@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:24:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 19:32:52 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 23:03:58 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,16 @@ void	start_player(t_map *map)
 		}
 		y++;
 	}
+}
+
+void	add_obj(char c, t_map *map)
+{
+	if (c == 'C')
+		map->c += 1;
+	if (c == 'E')
+		map->e += 1;
+	if (c == 'P')
+		map->p += 1;
+	if (c == 'S')
+		map->s += 1;
 }

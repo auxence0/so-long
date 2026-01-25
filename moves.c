@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 19:38:49 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/25 23:52:22 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	go_over_exit(t_data *data, int move_y, int move_x)
 	x = data->map->p_x + move_x;
 	if (data->map->pre_tile != 'E')
 		data->map->crd[data->map->p_y][data->map->p_x] = '0';
-	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-		data->win->player, (x + 3) * 32, (y + 3) * 32);
+	view_player(data, move_y, move_x);
 	data->map->p_y = y;
 	data->map->p_x = x;
 	data->map->pre_tile = 'E';
@@ -66,8 +65,7 @@ void	game_win(t_data *data, int move_y, int move_x)
 
 	x = data->map->p_x + move_x;
 	y = data->map->p_y + move_y;
-	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-		data->win->player, (x + 3) * 32, (y + 3) * 32);
+	view_player(data, move_y, move_x);
 	data->map->p_y = y;
 	data->map->p_x = x;
 	data->map->moves += 1;
@@ -87,8 +85,7 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 		data->map->crd[data->map->p_y][data->map->p_x] = '0';
 	if (data->map->crd[y][x] == 'C')
 		data->map->c -= 1;
-	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-		data->win->player, (x + 3) * 32, (y + 3) * 32);
+	view_player(data, move_y, move_x);
 	data->map->crd[y][x] = '0';
 	data->map->p_y = y;
 	data->map->p_x = x;
@@ -110,6 +107,8 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 	x = data->map->p_x;
 	if (data->map->crd[y + mv_y][x + mv_x] == '1')
 		return ;
+	if (data->map->crd[y + mv_y][x + mv_x] == 'S')
+		close_win(data);
 	if (data->map->pre_tile == '0')
 		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
 			data->win->floor, (x + 3) * 32, (y + 3) * 32);
