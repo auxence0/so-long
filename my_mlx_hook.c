@@ -29,7 +29,6 @@ void	destroy_img(t_data *data)
 int	close_win(t_data *data)
 {
 	destroy_img(data);
-	mlx_destroy_image(data->win->mlx_ptr, data->win->img);
 	mlx_destroy_window(data->win->mlx_ptr, data->win->win_ptr);
 	mlx_destroy_display(data->win->mlx_ptr);
 	free(data->win->mlx_ptr);
@@ -54,6 +53,7 @@ void	my_mlx_hook(t_win *win, t_map *map)
 		exit(1);
 	data->win = win;
 	data->map = map;
+	data->map->pre_tile = '0';
 	mlx_hook(win->win_ptr, 17, 0, close_win, data);
 	mlx_hook(win->win_ptr, 2, 1L << 0, handle_keypress, data);
 }

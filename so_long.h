@@ -47,6 +47,7 @@ typedef struct s_map
 	int		e;
 	int		p;
 	int		moves;
+	char	pre_tile;
 	char	**crd;
 	char	**tmp_map;
 }			t_map;
@@ -70,5 +71,6 @@ void		verif_acces_collectible(t_map *map, int y, int x);
 void		init_win(t_win *win, t_map *map, char *file);
 void		render_map(t_win *win, t_map *map);
 void		my_mlx_hook(t_win *win, t_map *map);
+void	move_player(t_map *map, int move_y, int move_x);
 
 #endif
