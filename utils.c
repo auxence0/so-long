@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:24:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 13:25:10 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:51:55 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,22 @@ char	**ft_strstrdup(char **tab, t_map *map)
 	return (res);
 }
 
-int	flood_fill(t_map *map, int y, int x)
+void	flood_fill(t_map *map, int y, int x)
 {
-	int	count;
-
-	count = 0;
 	if (x < 0 || x > map->width - 1 || y < 0 || y > map->height - 1)
-		return (0);
-	if (map->tmp_map[y][x] == '1' || map->tmp_map[y][x] == 'K')
-		return (0);
+		return ;
+	if (map->tmp_map[y][x] == '1' || map->tmp_map[y][x] == 'K'
+		|| map->tmp_map[y][x] == 'S')
+		return ;
 	if (map->tmp_map[y][x] == 'C')
-		count += 1;
+		map->verif_c += 1;
+	if (map->tmp_map[y][x] == 'E')
+		map->verif_e += 1;
 	map->tmp_map[y][x] = 'K';
-	count += flood_fill(map, y - 1, x);
-	count += flood_fill(map, y + 1, x);
-	count += flood_fill(map, y, x - 1);
-	count += flood_fill(map, y, x + 1);
-	return (count);
+	flood_fill(map, y - 1, x);
+	flood_fill(map, y + 1, x);
+	flood_fill(map, y, x - 1);
+	flood_fill(map, y, x + 1);
 }
 
 void	start_player(t_map *map)
@@ -112,6 +111,6 @@ void	add_obj(char c, t_map *map)
 	{
 		ft_putstr_fd("There is a non-existent object on the map.\n", 2);
 		free_tab(map->crd);
-		exit (1);
+		exit(1);
 	}
 }

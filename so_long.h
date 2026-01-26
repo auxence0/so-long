@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 12:56:43 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:28:34 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_map
 	int		e;
 	int		p;
 	int		s;
+	int		verif_c;
+	int		verif_e;
 	int		moves;
 	char	pre_tile;
 	char	**crd;
@@ -64,10 +66,10 @@ typedef struct s_data
 }			t_data;
 
 int			open_file(char *file);
-int			flood_fill(t_map *map, int y, int x);
 int			close_win(t_data *data);
 char		**ft_strstrdup(char **tab, t_map *map);
 void		malloc_height(t_map *map, char *file);
+void		flood_fill(t_map *map, int y, int x);
 void		malloc_lines(t_map *map, char *file);
 void		free_tab(char **tab);
 void		start_player(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:15:09 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 13:22:51 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:37:01 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,19 @@ void	verif_obj_map(t_map *map)
 
 void	verif_acces_collectible(t_map *map, int y, int x)
 {
-	int	count_collectible;
-
-	count_collectible = flood_fill(map, y, x);
-	if (map->c == count_collectible)
+	map->verif_c = 0;
+	map->verif_e = 0;
+	flood_fill(map, y, x);
+	if (map->c == map->verif_c && map->verif_e > 0)
 		return ;
 	else
 	{
-		if (map->c == 1)
+		if (map->verif_e < 1)
+			ft_putstr_fd("There is no exit accessible\n", 2);
+		if (map->c - map->verif_c == 1)
 			ft_putstr_fd("The collectible is not accessible\n", 2);
-		else
-			ft_putstr_fd("Collectible are not accessible\n", 2);
+		else if (map->c - map->verif_c != 0)
+			ft_putstr_fd("Collectibles are not accessible\n", 2);
 		exit(1);
 	}
 }
