@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 12:58:42 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:48:58 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	err_init(t_win *win, t_map *map)
 		free(win->mlx_ptr);
 	}
 	free_tab(map->crd);
-	free_tab(map->tmp_map);
 	ft_putstr_fd("Failed to open window\n", 2);
 	exit(1);
 }

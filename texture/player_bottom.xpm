@@ -1,5 +1,5 @@
 /* XPM */
-static char *student[] = {
+static char *player_down[] = {
 "32 32 6 1",
 "  c None",
 "# c #333333", /* Sweat capuche */

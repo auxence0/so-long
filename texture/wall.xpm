@@ -1,40 +1,116 @@
+
 /* XPM */
+
+
 static char *wall[] = {
-"32 32 5 1",
-"B c #222222", /* Rack noir */
-"G c #444444", /* Grille grise */
-"L c #00FF00", /* Lumière verte (OK) */
-"R c #FF0000", /* Lumière rouge (Erreur) */
-". c #000000", /* Contour */
+
+
+"32 32 3 1",
+
+
+"  c #000000",
+
+
+". c #4A4A4A",
+
+
+"+ c #6E6E6E",
+
+
 "................................",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BL.BR.BL.BL.BBBBBBBBBBBBBBBBBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BL.BL.BL.BL.BBBBBBBBBBBBBBBBBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BR.BR.BR.BR.BBBBBBBBBBBBBBBBBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BL.BL.BR.BL.BBBBBBBBBBBBBBBBBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBGGGGGGGGGGGGGGGGGGGGGGGGGGBB.",
-".BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++ +++++ +++++ +++++ +++++ +++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++ +++++ +++++ +++++ +++++ +++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++ +++++ +++++ +++++ +++++ +++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++ +++++ +++++ +++++ +++++ +++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++ +++++ +++++ +++++ +++++ +++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++++++++++++++++++++++++++++++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
+".++ +++++ +++++ +++++ +++++ +++.",
+
+
+".++  ++++  ++++  ++++  ++++  ++.",
+
+
 "................................"
+
+
 };
