@@ -6,13 +6,11 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 22:56:34 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:58:42 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-
 
 void	err_init(t_win *win, t_map *map)
 {
@@ -39,10 +37,20 @@ void	err_texture(t_win *win)
 		ft_putstr_fd("Exit failed to load\n", 2);
 	if (!win->floor)
 		ft_putstr_fd("Floor failed to load\n", 2);
-	if (!win->player)
-		ft_putstr_fd("Failed to load player\n", 2);
-	if (!win->wall || !win->collectible || !win->exit || !win->player || !win->floor)
-		exit (1);
+	if (!win->player_bottom)
+		ft_putstr_fd("Failed to load player_bottom\n", 2);
+	if (!win->player_top)
+		ft_putstr_fd("Failed to load player_top\n", 2);
+	if (!win->player_right)
+		ft_putstr_fd("Failed to load player_right\n", 2);
+	if (!win->player_left)
+		ft_putstr_fd("Failed to load player_left\n", 2);
+	if (!win->enemie)
+		ft_putstr_fd("Failed to load enemie", 2);
+	if (!win->wall || !win->collectible || !win->exit || !win->player_bottom
+		|| !win->player_top || !win->player_right || !win->player_left
+		|| !win->enemie || !win->floor)
+		exit(1);
 }
 
 void	texture_img(t_win *win)
@@ -51,10 +59,18 @@ void	texture_img(t_win *win)
 			&win->width_img, &win->height_img);
 	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
 			&win->width_img, &win->height_img);
-	win->player = mlx_xpm_file_to_image(win->mlx_ptr, "texture/player.xpm",
+	win->player_bottom = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/player_bottom.xpm", &win->width_img, &win->height_img);
+	win->player_top = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/player_top.xpm", &win->width_img, &win->height_img);
+	win->player_right = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/player_right.xpm", &win->width_img, &win->height_img);
+	win->player_left = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/player_left.xpm", &win->width_img, &win->height_img);
+	win->enemie = mlx_xpm_file_to_image(win->mlx_ptr, "texture/enemie.xpm",
 			&win->width_img, &win->height_img);
-	win->collectible = mlx_xpm_file_to_image(win->mlx_ptr, "texture/collectible.xpm",
-			&win->width_img, &win->height_img);
+	win->collectible = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/collectible.xpm", &win->width_img, &win->height_img);
 	win->exit = mlx_xpm_file_to_image(win->mlx_ptr, "texture/exit.xpm",
 			&win->width_img, &win->height_img);
 	err_texture(win);
@@ -77,7 +93,7 @@ void	init_win(t_win *win, t_map *map, char *file)
 		mlx_destroy_display(win->mlx_ptr);
 		free(win->mlx_ptr);
 		free_tab(map->crd);
-		exit (1);
+		exit(1);
 	}
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
 	if (!win->win_ptr)

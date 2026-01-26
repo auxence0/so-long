@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 23:52:22 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:13:27 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	go_over_exit(t_data *data, int move_y, int move_x)
 	data->map->pre_tile = 'E';
 	data->map->moves += 1;
 	movement = str_movement(data, move_y, move_x);
-	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0xFF0000,
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0x00FF00,
 		movement);
 	ft_printf("%s", movement);
 	free(movement);
@@ -92,7 +92,7 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
 	movement = str_movement(data, move_y, move_x);
-	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0xFF0000,
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0x00FF00,
 		movement);
 	ft_printf("%s\n", movement);
 	free(movement);

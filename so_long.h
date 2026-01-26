@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 23:54:13 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:56:43 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_win
 	void	*player_bottom;
 	void	*player_right;
 	void	*player_left;
+	void	*enemie;
 	void	*collectible;
 	void	*exit;
 	int		width_img;

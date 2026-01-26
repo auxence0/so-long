@@ -1,0 +1,41 @@
+/* XPM */
+static char *norminet[] = {
+"32 32 5 1",
+"  c None",
+"M c #555555", /* Métal foncé */
+"L c #999999", /* Métal clair */
+"R c #FF0000", /* Œil Rouge menaçant */
+". c #000000", /* Contour/Antennes */
+"                                ",
+"            ..    ..            ",
+"            ..    ..            ",
+"            ..    ..            ",
+"          MMMMMMMMMMMM          ",
+"         MMLLLLLLLLLLMM         ",
+"        MMLLLLLLLLLLLLMM        ",
+"        MLLLLLLLLLLLLLLM        ",
+"        MLLLLLLLLLLLLLLM        ",
+"        MLLLLRRRRRRLLLLM        ",
+"        MLLLLRRRRRRLLLLM        ",
+"        MLLLLRRRRRRLLLLM        ",
+"        MLLLLLLLLLLLLLLM        ",
+"        MMLLLLLLLLLLLLMM        ",
+"         MMLLLLLLLLLLMM         ",
+"          MMMMMMMMMMMM          ",
+"            MMMMMMMM            ",
+"           .MMMMMMMM.           ",
+"          .MMM .. MMM.          ",
+"         .MMM  ..  MMM.         ",
+"         .MMM  ..  MMM.         ",
+"         .MMM  ..  MMM.         ",
+"          .MM  ..  MM.          ",
+"               ..               ",
+"              ....              ",
+"             ..  ..             ",
+"             ..  ..             ",
+"            MMM  MMM            ",
+"            MMM  MMM            ",
+"            ...  ...            ",
+"                                ",
+"                                "
+};

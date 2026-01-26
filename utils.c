@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:24:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/25 23:03:58 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:25:10 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,16 @@ void	add_obj(char c, t_map *map)
 {
 	if (c == 'C')
 		map->c += 1;
-	if (c == 'E')
+	else if (c == 'E')
 		map->e += 1;
-	if (c == 'P')
+	else if (c == 'P')
 		map->p += 1;
-	if (c == 'S')
+	else if (c == 'S')
 		map->s += 1;
+	else if (c != '0' && c != '1')
+	{
+		ft_putstr_fd("There is a non-existent object on the map.\n", 2);
+		free_tab(map->crd);
+		exit (1);
+	}
 }
