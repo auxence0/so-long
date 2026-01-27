@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:24:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 15:51:55 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/27 01:37:09 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 void	draw_rectangle(t_win *win)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	while (i < 50)
+	while (i < win->width)
 	{
-		j = 0;
-		while (j < 300)
-		{
-			mlx_pixel_put(win->mlx_ptr, win->win_ptr, j, i, 0x000000);
-			j++;
-		}
+		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->wall, i * 32, 0);
 		i++;
 	}
 }

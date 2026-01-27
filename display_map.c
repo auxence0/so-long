@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:44:04 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 15:37:09 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/27 01:29:43 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	render_map(t_win *win, t_map *map)
 		x = 0;
 		while (map->crd[y][x])
 		{
-			display_map(win, map->crd[y][x], y + 3, x + 3);
+			display_map(win, map->crd[y][x], y, x);
 			x++;
 		}
 		y++;

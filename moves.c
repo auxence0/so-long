@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 13:13:27 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/27 01:40:36 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	go_over_exit(t_data *data, int move_y, int move_x)
 	data->map->pre_tile = 'E';
 	data->map->moves += 1;
 	movement = str_movement(data, move_y, move_x);
-	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0x00FF00,
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		movement);
-	ft_printf("%s", movement);
+	ft_printf("%s\n", movement);
 	free(movement);
 }
 
@@ -92,7 +92,7 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
 	movement = str_movement(data, move_y, move_x);
-	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 40, 40, 0x00FF00,
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		movement);
 	ft_printf("%s\n", movement);
 	free(movement);
@@ -111,10 +111,10 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 		close_win(data);
 	if (data->map->pre_tile == '0')
 		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-			data->win->floor, (x + 3) * 32, (y + 3) * 32);
+			data->win->floor, x * 32, y * 32);
 	else
 		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-			data->win->exit, (x + 3) * 32, (y + 3) * 32);
+			data->win->exit, x * 32, y * 32);
 	if (data->map->crd[y + mv_y][x + mv_x] == '0' || data->map->crd[y + mv_y][x
 		+ mv_x] == 'C')
 		take_collectible(data, mv_y, mv_x);
