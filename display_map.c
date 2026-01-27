@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:44:04 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/27 01:29:43 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/27 04:20:15 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	display_map(t_win *win, char c, int y, int x)
 {
+	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->floor, x
+		* win->width_img, y * win->height_img);
 	if (c == '1')
 		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->wall, x
-			* win->width_img, y * win->height_img);
-	if (c == '0')
-		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->floor, x
 			* win->width_img, y * win->height_img);
 	if (c == 'P')
 		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->player_bottom,
