@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 17:59:46 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:16:56 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_win
 	void	*player[4];
 	void	*enemie;
 	void	*collectible[4];
-	void	*exit;
+	void	*exit[2];
 	int		width_img;
 	int		height_img;
 }			t_win;
@@ -54,6 +54,7 @@ typedef struct s_map
 	int		frame;
 	int		index_player;
 	int		index_coll;
+	int		index_exit;
 	char	pre_tile;
 	char	*movement;
 	char	**crd;

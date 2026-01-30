@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 18:06:10 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:15:22 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	destroy_img(t_data *data)
 		mlx_destroy_image(data->win->mlx_ptr, data->win->player[2]);
 	if (data->win->player[3])
 		mlx_destroy_image(data->win->mlx_ptr, data->win->player[3]);
-	if (data->win->exit)
-		mlx_destroy_image(data->win->mlx_ptr, data->win->exit);
+	if (data->win->exit[0])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->exit[0]);
+	if (data->win->exit[1])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->exit[1]);
 	if (data->win->collectible[0])
 		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[0]);
 	if (data->win->collectible[1])

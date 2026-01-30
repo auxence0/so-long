@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 17:51:01 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:24:26 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	err_texture(t_win *win)
 	if (!win->collectible[0] || !win->collectible[1] || !win->collectible[2]
 		|| !win->collectible[3])
 		ft_putstr_fd("Collectible failed to load\n", 2);
-	if (!win->exit)
+	if (!win->exit[0] || !win->exit[1])
 		ft_putstr_fd("Exit failed to load\n", 2);
 	if (!win->floor)
 		ft_putstr_fd("Floor failed to load\n", 2);
@@ -43,18 +43,14 @@ void	err_texture(t_win *win)
 	if (!win->enemie)
 		ft_putstr_fd("Failed to load enemie", 2);
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
-		|| !win->collectible[2] || !win->collectible[3] || !win->exit
-		|| !win->player[0] || !win->player[1] || !win->player[2]
-		|| !win->player[3] || !win->enemie || !win->floor)
+		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
+		|| !win->exit[1] || !win->player[0] || !win->player[1]
+		|| !win->player[2] || !win->player[3] || !win->enemie || !win->floor)
 		exit(1);
 }
 
-void	texture_img(t_win *win)
+void	load_players_collectibles(t_win *win)
 {
-	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall.xpm",
-			&win->width_img, &win->height_img);
-	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
-			&win->width_img, &win->height_img);
 	win->player[0] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/mario_bottom.xpm", &win->width_img, &win->height_img);
 	win->player[1] = mlx_xpm_file_to_image(win->mlx_ptr,
@@ -63,8 +59,6 @@ void	texture_img(t_win *win)
 			"texture/mario_right.xpm", &win->width_img, &win->height_img);
 	win->player[3] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/mario_left.xpm", &win->width_img, &win->height_img);
-	win->enemie = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
-			&win->width_img, &win->height_img);
 	win->collectible[0] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/collectible_front.xpm", &win->width_img, &win->height_img);
 	win->collectible[1] = mlx_xpm_file_to_image(win->mlx_ptr,
@@ -74,8 +68,21 @@ void	texture_img(t_win *win)
 			&win->height_img);
 	win->collectible[3] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/collectible_left.xpm", &win->width_img, &win->height_img);
-	win->exit = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_yellow.xpm",
+}
+
+void	texture_img(t_win *win)
+{
+	load_players_collectibles(win);
+	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall.xpm",
 			&win->width_img, &win->height_img);
+	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
+			&win->width_img, &win->height_img);
+	win->enemie = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
+			&win->width_img, &win->height_img);
+	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/tube_yellow.xpm", &win->width_img, &win->height_img);
+	win->exit[1] = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/tube_green.xpm", &win->width_img, &win->height_img);
 	err_texture(win);
 }
 

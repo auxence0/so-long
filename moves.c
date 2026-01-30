@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 18:04:14 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:17:03 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
 	data->map->crd[y][x] = 'P';
+	if (data->map->c == 0)
+		data->map->index_exit = 1;
 	render_map(data->win, data->map);
 	data->map->movement = str_movement(data, move_y, move_x);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
