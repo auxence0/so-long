@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 16:06:36 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 19:03:32 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ int	verif_len_line(char **map)
 	return (pre_len);
 }
 
+void	check_malloc_line(t_map *map, char *line, int fd)
+{
+	if (!line)
+	{
+		free_tab(map->crd);
+		close(fd);
+		exit(1);
+	}
+}
+
 void	malloc_lines(t_map *map, char *file)
 {
 	int		fd;
@@ -56,8 +66,7 @@ void	malloc_lines(t_map *map, char *file)
 	line = get_next_line(fd);
 	while (++i < map->height)
 	{
-		if (!line)
-			break ;
+		check_malloc_line(map, line, fd);
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		map->crd[i] = ft_strdup(line);
@@ -88,9 +97,9 @@ void	malloc_height(t_map *map, char *file)
 		map->height++;
 		line = get_next_line(fd);
 	}
-	if (!map->height)
+	if (map->height < 3)
 	{
-		ft_putstr_fd("There is no line in the map\n", 2);
+		ft_putstr_fd("You need at least 3 lines to create a map.\n", 2);
 		close(fd);
 		exit(1);
 	}
