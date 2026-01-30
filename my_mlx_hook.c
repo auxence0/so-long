@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 16:33:58 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:53:35 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ void	destroy_img(t_data *data)
 		mlx_destroy_image(data->win->mlx_ptr, data->win->player[3]);
 	if (data->win->exit)
 		mlx_destroy_image(data->win->mlx_ptr, data->win->exit);
-	if (data->win->collectible)
-		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible);
+	if (data->win->collectible[0])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[0]);
+	if (data->win->collectible[1])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[1]);
+	if (data->win->collectible[2])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[2]);
+	if (data->win->collectible[3])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[3]);
 }
 
 int	close_win(t_data *data)
@@ -58,6 +64,17 @@ int	handle_keypress(int keycode, t_data *data)
 	return (0);
 }
 
+int	animation_collectible(t_data *data)
+{
+	if (data->map->frame++ > 40000)
+	{
+		data->map->frame = 0;
+		data->map->index_coll = (data->map->index_coll + 1) % 4;
+		render_map(data->win, data->map);
+	}
+	return (0);
+}
+
 void	my_mlx_hook(t_win *win, t_map *map)
 {
 	t_data	*data;
@@ -70,4 +87,5 @@ void	my_mlx_hook(t_win *win, t_map *map)
 	data->map->pre_tile = '0';
 	mlx_hook(win->win_ptr, 17, 0, close_win, data);
 	mlx_hook(win->win_ptr, 2, 1L << 0, handle_keypress, data);
+	mlx_loop_hook(win->mlx_ptr, animation_collectible, data);
 }
