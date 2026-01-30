@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 17:52:16 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:59:46 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 	int		index_player;
 	int		index_coll;
 	char	pre_tile;
+	char	*movement;
 	char	**crd;
 	char	**tmp_map;
 }			t_map;

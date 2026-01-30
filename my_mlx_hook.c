@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 17:53:35 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:06:10 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	close_win(t_data *data)
 	mlx_destroy_display(data->win->mlx_ptr);
 	free(data->win->mlx_ptr);
 	free_tab(data->map->crd);
+	if (data->map->movement)
+		free(data->map->movement);
 	free(data);
 	exit(0);
 }
@@ -71,6 +73,9 @@ int	animation_collectible(t_data *data)
 		data->map->frame = 0;
 		data->map->index_coll = (data->map->index_coll + 1) % 4;
 		render_map(data->win, data->map);
+		if (data->map->movement)
+			mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
+				data->map->movement);
 	}
 	return (0);
 }
