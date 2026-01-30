@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:16:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 19:56:03 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 16:06:08 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	parse_map(t_map *map, char *file)
 	map->tmp_map = ft_strstrdup(map->crd, map);
 	verif_acces_collectible(map, map->p_y, map->p_x);
 	free_tab(map->tmp_map);
-	map->moves = 0;
 }
 
 int	main(int ac, char **av)
@@ -30,6 +29,8 @@ int	main(int ac, char **av)
 	t_map	map;
 	t_win	win;
 
+	ft_bzero(&map, sizeof(t_map));
+	ft_bzero(&win, sizeof(t_win));
 	if (ac != 2)
 	{
 		ft_putstr_fd("U need to give one arg\n", 2);

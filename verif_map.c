@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:15:09 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/26 15:37:01 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 16:38:03 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,6 @@ void	verif_obj_map(t_map *map)
 	int	x;
 
 	y = 0;
-	map->e = 0;
-	map->c = 0;
-	map->p = 0;
-	map->s = 0;
 	while (map->crd[y])
 	{
 		x = 0;
@@ -78,8 +74,6 @@ void	verif_obj_map(t_map *map)
 
 void	verif_acces_collectible(t_map *map, int y, int x)
 {
-	map->verif_c = 0;
-	map->verif_e = 0;
 	flood_fill(map, y, x);
 	if (map->c == map->verif_c && map->verif_e > 0)
 		return ;

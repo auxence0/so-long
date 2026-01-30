@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/24 15:42:32 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 16:06:36 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	malloc_height(t_map *map, char *file)
 	char	*line;
 
 	fd = open_file(file);
-	map->height = 0;
 	line = get_next_line(fd);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 13:40:10 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 16:17:31 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,14 @@ void	err_texture(t_win *win)
 		ft_putstr_fd("Exit failed to load\n", 2);
 	if (!win->floor)
 		ft_putstr_fd("Floor failed to load\n", 2);
-	if (!win->player_bottom)
+	if (!win->player[0] || !win->player[1] || !win->player[2]
+		|| !win->player[3])
 		ft_putstr_fd("Failed to load player_bottom\n", 2);
-	if (!win->player_top)
-		ft_putstr_fd("Failed to load player_top\n", 2);
-	if (!win->player_right)
-		ft_putstr_fd("Failed to load player_right\n", 2);
-	if (!win->player_left)
-		ft_putstr_fd("Failed to load player_left\n", 2);
 	if (!win->enemie)
 		ft_putstr_fd("Failed to load enemie", 2);
-	if (!win->wall || !win->collectible || !win->exit || !win->player_bottom
-		|| !win->player_top || !win->player_right || !win->player_left
-		|| !win->enemie || !win->floor)
+	if (!win->wall || !win->collectible || !win->exit || !win->player[0]
+		|| !win->player[1] || !win->player[2] || !win->player[3] || !win->enemie
+		|| !win->floor)
 		exit(1);
 }
 
@@ -58,13 +53,13 @@ void	texture_img(t_win *win)
 			&win->width_img, &win->height_img);
 	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
 			&win->width_img, &win->height_img);
-	win->player_bottom = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->player[0] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/mario_bottom.xpm", &win->width_img, &win->height_img);
-	win->player_top = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->player[1] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/mario_top.xpm", &win->width_img, &win->height_img);
-	win->player_right = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->player[2] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/mario_right.xpm", &win->width_img, &win->height_img);
-	win->player_left = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->player[3] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/mario_left.xpm", &win->width_img, &win->height_img);
 	win->enemie = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
 			&win->width_img, &win->height_img);

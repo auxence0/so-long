@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/27 04:27:15 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 16:35:47 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ void	go_over_exit(t_data *data, int move_y, int move_x)
 	data->map->p_x = x;
 	data->map->pre_tile = 'E';
 	data->map->moves += 1;
+	data->map->crd[y][x] = 'P';
 	movement = str_movement(data, move_y, move_x);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		movement);
 	ft_printf("%s\n", movement);
+	render_map(data->win, data->map);
 	free(movement);
 }
 
@@ -70,6 +72,7 @@ void	game_win(t_data *data, int move_y, int move_x)
 	data->map->p_x = x;
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
+	render_map(data->win, data->map);
 	close_win(data);
 }
 
@@ -91,10 +94,12 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	data->map->p_x = x;
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
+	data->map->crd[y][x] = 'P';
 	movement = str_movement(data, move_y, move_x);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		movement);
 	ft_printf("%s\n", movement);
+	render_map(data->win, data->map);
 	free(movement);
 }
 
@@ -109,12 +114,7 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 		return ;
 	if (data->map->crd[y + mv_y][x + mv_x] == 'S')
 		close_win(data);
-	if (data->map->pre_tile == '0')
-		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-			data->win->floor, x * 32, y * 32);
-	else
-		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-			data->win->exit, x * 32, y * 32);
+	data->map->crd[y][x] = data->map->pre_tile;
 	if (data->map->crd[y + mv_y][x + mv_x] == '0' || data->map->crd[y + mv_y][x
 		+ mv_x] == 'C')
 		take_collectible(data, mv_y, mv_x);
