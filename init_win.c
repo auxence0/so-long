@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/27 04:26:48 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/01/30 13:40:10 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,18 @@ void	texture_img(t_win *win)
 	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
 			&win->width_img, &win->height_img);
 	win->player_bottom = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/player_bottom.xpm", &win->width_img, &win->height_img);
+			"texture/mario_bottom.xpm", &win->width_img, &win->height_img);
 	win->player_top = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/player_top.xpm", &win->width_img, &win->height_img);
+			"texture/mario_top.xpm", &win->width_img, &win->height_img);
 	win->player_right = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/player_right.xpm", &win->width_img, &win->height_img);
+			"texture/mario_right.xpm", &win->width_img, &win->height_img);
 	win->player_left = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/player_left.xpm", &win->width_img, &win->height_img);
-	win->enemie = mlx_xpm_file_to_image(win->mlx_ptr, "texture/enemie.xpm",
+			"texture/mario_left.xpm", &win->width_img, &win->height_img);
+	win->enemie = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
 			&win->width_img, &win->height_img);
 	win->collectible = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible.xpm", &win->width_img, &win->height_img);
-	win->exit = mlx_xpm_file_to_image(win->mlx_ptr, "texture/exit.xpm",
+			"texture/collectible_front.xpm", &win->width_img, &win->height_img);
+	win->exit = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_yellow.xpm",
 			&win->width_img, &win->height_img);
 	err_texture(win);
 }
