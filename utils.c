@@ -12,6 +12,13 @@
 
 #include "so_long.h"
 
+int	handle_escape(int keycode, t_data *data)
+{
+	if (keycode == 65307)
+		close_win(data);
+	return (0);
+}
+
 char	**ft_strstrdup(char **tab, t_map *map)
 {
 	char	**res;

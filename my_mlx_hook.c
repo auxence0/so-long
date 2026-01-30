@@ -70,7 +70,7 @@ int	handle_keypress(int keycode, t_data *data)
 
 int	animation_collectible(t_data *data)
 {
-	if (data->map->frame++ > 40000)
+	if (data->map->frame++ > 40000 && data->map->c > 0 && !data->map->lose)
 	{
 		data->map->frame = 0;
 		data->map->index_coll = (data->map->index_coll + 1) % 4;

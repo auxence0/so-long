@@ -41,7 +41,7 @@ void	err_texture(t_win *win)
 		|| !win->player[3])
 		ft_putstr_fd("Failed to load player_bottom\n", 2);
 	if (!win->enemie)
-		ft_putstr_fd("Failed to load enemie", 2);
+		ft_putstr_fd("Failed to load enemie\n", 2);
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
 		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
 		|| !win->exit[1] || !win->player[0] || !win->player[1]
@@ -81,8 +81,8 @@ void	texture_img(t_win *win)
 			&win->width_img, &win->height_img);
 	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/tube_yellow.xpm", &win->width_img, &win->height_img);
-	win->exit[1] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/tube_green.xpm", &win->width_img, &win->height_img);
+	win->exit[1] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_green.xpm",
+			&win->width_img, &win->height_img);
 	err_texture(win);
 }
 

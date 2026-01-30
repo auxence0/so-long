@@ -39,8 +39,8 @@ char	*str_movement(t_data *data, int y, int x)
 
 void	go_over_exit(t_data *data, int move_y, int move_x)
 {
-	int		y;
-	int		x;
+	int	y;
+	int	x;
 
 	y = data->map->p_y + move_y;
 	x = data->map->p_x + move_x;
@@ -72,13 +72,16 @@ void	game_win(t_data *data, int move_y, int move_x)
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
 	render_map(data->win, data->map);
-	close_win(data);
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width / 2,
+		data->win->height / 2, 0x00FF00, "YOU WIN!");
+	mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
+	mlx_hook(data->win->win_ptr, 17, 0, close_win, data);
 }
 
 void	take_collectible(t_data *data, int move_y, int move_x)
 {
-	int		y;
-	int		x;
+	int	y;
+	int	x;
 
 	y = data->map->p_y + move_y;
 	x = data->map->p_x + move_x;
@@ -112,7 +115,13 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 	if (data->map->crd[y + mv_y][x + mv_x] == '1')
 		return ;
 	if (data->map->crd[y + mv_y][x + mv_x] == 'S')
-		close_win(data);
+	{
+		data->map->lose = 1;
+		mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width
+			/ 2, data->win->height / 2, 0xFF0000, "YOU LOSE!");
+		mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
+		mlx_hook(data->win->win_ptr, 17, 0, close_win, data);
+	}
 	data->map->crd[y][x] = data->map->pre_tile;
 	if (data->map->crd[y + mv_y][x + mv_x] == '0' || data->map->crd[y + mv_y][x
 		+ mv_x] == 'C')
