@@ -97,7 +97,7 @@ void	init_win(t_win *win, t_map *map, char *file)
 	if (!win->mlx_ptr)
 		err_init(win, map);
 	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
-	if (win->height > max_height || win->width > max_width)
+	if (win->height > max_height - 64 || win->width > max_width)
 	{
 		ft_putstr_fd("The map is to wide\n", 2);
 		mlx_destroy_display(win->mlx_ptr);
