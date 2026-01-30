@@ -35,7 +35,7 @@ MLX_PATH = ./minilibx-linux
 MLX_LIB = $(MLX_PATH)/libmlx.a
 MLX_INC = $(MLX_PATH)
 
-INC = fdf.h
+INC = so_long.h
 
 OBJ = $(SRC:.c=.o)
 
