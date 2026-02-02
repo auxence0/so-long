@@ -30,6 +30,10 @@ void	destroy_players_collectibles(t_data *data)
 		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[2]);
 	if (data->win->collectible[3])
 		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[3]);
+	if (data->win->collectible[4])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[4]);
+	if (data->win->collectible[4])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->collectible[5]);
 }
 
 void	destroy_img(t_data *data)

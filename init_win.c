@@ -31,7 +31,7 @@ void	err_texture(t_win *win)
 	if (!win->wall)
 		ft_putstr_fd("Wall failed to load\n", 2);
 	if (!win->collectible[0] || !win->collectible[1] || !win->collectible[2]
-		|| !win->collectible[3])
+		|| !win->collectible[3] || !win->collectible[4] || !win->collectible[5])
 		ft_putstr_fd("Collectible failed to load\n", 2);
 	if (!win->exit[0] || !win->exit[1] || !win->exit[2])
 		ft_putstr_fd("Exit failed to load\n", 2);
@@ -63,12 +63,18 @@ void	load_players_collectibles(t_win *win)
 	win->collectible[0] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/collectible_front.xpm", &win->width_img, &win->height_img);
 	win->collectible[1] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_right.xpm", &win->width_img, &win->height_img);
+			"texture/collectible_semi_right.xpm", &win->width_img,
+			&win->height_img);
 	win->collectible[2] = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/collectible_right.xpm", &win->width_img, &win->height_img);
+	win->collectible[3] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/collectible_profile.xpm", &win->width_img,
 			&win->height_img);
-	win->collectible[3] = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->collectible[4] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/collectible_left.xpm", &win->width_img, &win->height_img);
+	win->collectible[5] = mlx_xpm_file_to_image(win->mlx_ptr,
+			"texture/collectible_semi_left.xpm", &win->width_img,
+			&win->height_img);
 }
 
 void	texture_img(t_win *win)

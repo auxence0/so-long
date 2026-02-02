@@ -38,7 +38,7 @@ int	animation_collectible(t_data *data)
 	{
 		data->map->frame = mini_sec;
 		data->map->index_enemie = (data->map->index_enemie + 1) % 4;
-		data->map->index_coll = (data->map->index_coll + 1) % 4;
+		data->map->index_coll = (data->map->index_coll + 1) % 6;
 		render_map(data->win, data->map);
 		if (data->map->movement)
 			mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20,
