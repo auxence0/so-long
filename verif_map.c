@@ -17,7 +17,7 @@ void	error_wall_map(char **map)
 	int	i;
 
 	i = 0;
-	ft_putstr_fd("The map is not properly surrounded by walls.\n", 2);
+	ft_putstr_fd("Error : The map is not properly surrounded by walls.\n", 2);
 	if (!map)
 		exit(1);
 	while (map[i])
@@ -34,13 +34,15 @@ void	error_obj_map(t_map *map)
 	int	i;
 
 	if (map->e == 0)
-		ft_putstr_fd("The exit is missing\n", 2);
+		ft_putstr_fd("Error : The exit is missing\n", 2);
+	if (map->e > 1)
+		ft_putstr_fd("Error : There is more than 1 exit\n", 2);
 	if (map->c == 0)
-		ft_putstr_fd("A collectible is missing\n", 2);
+		ft_putstr_fd("Error : A collectible is missing\n", 2);
 	if (map->p == 0)
-		ft_putstr_fd("The player is missing\n", 2);
+		ft_putstr_fd("Error : The player is missing\n", 2);
 	if (map->p > 1)
-		ft_putstr_fd("There is too many players\n", 2);
+		ft_putstr_fd("Error : There is too many players\n", 2);
 	i = 0;
 	while (map->crd && map->crd[i])
 	{
@@ -68,23 +70,23 @@ void	verif_obj_map(t_map *map)
 		}
 		y++;
 	}
-	if (map->e < 1 || map->c < 1 || map->p != 1)
+	if (map->e != 1 || map->c < 1 || map->p != 1)
 		error_obj_map(map);
 }
 
 void	verif_acces_collectible(t_map *map, int y, int x)
 {
 	flood_fill(map, y, x);
-	if (map->c == map->verif_c && map->verif_e > 0)
+	if (map->c == map->verif_c && map->verif_e == 1)
 		return ;
 	else
 	{
 		if (map->verif_e < 1)
-			ft_putstr_fd("There is no exit accessible\n", 2);
+			ft_putstr_fd("Error : There is no exit accessible\n", 2);
 		if (map->c - map->verif_c == 1)
-			ft_putstr_fd("The collectible is not accessible\n", 2);
+			ft_putstr_fd("Error : The collectible is not accessible\n", 2);
 		else if (map->c - map->verif_c != 0)
-			ft_putstr_fd("Collectibles are not accessible\n", 2);
+			ft_putstr_fd("Error : Collectibles are not accessible\n", 2);
 		exit(1);
 	}
 }

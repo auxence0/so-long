@@ -98,7 +98,7 @@ void	add_obj(char c, t_map *map)
 		map->s += 1;
 	else if (c != '0' && c != '1')
 	{
-		ft_putstr_fd("There is a non-existent object on the map.\n", 2);
+		ft_putstr_fd("Error : There is a non-existent object on the map.\n", 2);
 		free_tab(map->crd);
 		exit(1);
 	}

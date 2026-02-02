@@ -36,7 +36,7 @@ int	verif_len_line(char **map)
 	{
 		if (pre_len != ft_strlen(map[y]))
 		{
-			ft_putstr_fd("the line sizes are not equal\n", 2);
+			ft_putstr_fd("Error : the line sizes are not equal\n", 2);
 			exit(1);
 		}
 		pre_len = ft_strlen(map[y]);
@@ -99,7 +99,7 @@ void	malloc_height(t_map *map, char *file)
 	}
 	if (map->height < 3)
 	{
-		ft_putstr_fd("You need at least 3 lines to create a map.\n", 2);
+		ft_putstr_fd("Error : You need at least 3 lines to create a map.\n", 2);
 		close(fd);
 		exit(1);
 	}

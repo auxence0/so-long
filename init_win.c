@@ -22,26 +22,26 @@ void	err_init(t_win *win, t_map *map)
 		free(win->mlx_ptr);
 	}
 	free_tab(map->crd);
-	ft_putstr_fd("Failed to open window\n", 2);
+	ft_putstr_fd("Error : Failed to open window\n", 2);
 	exit(1);
 }
 
 void	err_texture(t_win *win)
 {
 	if (!win->wall)
-		ft_putstr_fd("Wall failed to load\n", 2);
+		ft_putstr_fd("Error : Wall failed to load\n", 2);
 	if (!win->collectible[0] || !win->collectible[1] || !win->collectible[2]
 		|| !win->collectible[3] || !win->collectible[4] || !win->collectible[5])
-		ft_putstr_fd("Collectible failed to load\n", 2);
+		ft_putstr_fd("Error : Collectible failed to load\n", 2);
 	if (!win->exit[0] || !win->exit[1] || !win->exit[2])
-		ft_putstr_fd("Exit failed to load\n", 2);
+		ft_putstr_fd("Error : Exit failed to load\n", 2);
 	if (!win->floor)
-		ft_putstr_fd("Floor failed to load\n", 2);
+		ft_putstr_fd("Error : Floor failed to load\n", 2);
 	if (!win->player[0] || !win->player[1] || !win->player[2]
 		|| !win->player[3])
-		ft_putstr_fd("Failed to load player_bottom\n", 2);
+		ft_putstr_fd("Error : Failed to load player_bottom\n", 2);
 	if (!win->enemie[0] || !win->enemie[1] || !win->enemie[2])
-		ft_putstr_fd("Failed to load enemie\n", 2);
+		ft_putstr_fd("Error : Failed to load enemie\n", 2);
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
 		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
 		|| !win->exit[1] || !win->exit[2] || !win->player[0] || !win->player[1]
@@ -112,7 +112,7 @@ void	init_win(t_win *win, t_map *map, char *file)
 	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
 	if (win->height > max_height - 64 || win->width > max_width)
 	{
-		ft_putstr_fd("The map is to wide\n", 2);
+		ft_putstr_fd("Error : The map is to wide\n", 2);
 		mlx_destroy_display(win->mlx_ptr);
 		free(win->mlx_ptr);
 		free_tab(map->crd);
