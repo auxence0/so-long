@@ -74,6 +74,7 @@ void	game_win(t_data *data, int move_y, int move_x)
 	data->map->movement = str_movement(data, move_y, move_x);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		data->map->movement);
+	data->map->end = 1;
 	ft_printf("%s\n", data->map->movement);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width / 2,
 		data->win->height / 2, 0x00FF00, "YOU WIN!");
@@ -116,7 +117,9 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 		return ;
 	if (data->map->crd[y + mv_y][x + mv_x] == 'S')
 	{
-		data->map->lose = 1;
+		data->map->end = 1;
+		data->map->index_enemie = 1;
+		render_map(data->win, data->map);
 		mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width
 			/ 2, data->win->height / 2, 0xFF0000, "YOU LOSE!");
 		mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);

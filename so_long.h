@@ -57,7 +57,7 @@ typedef struct s_map
 	int		index_coll;
 	int		index_exit;
 	int		index_enemie;
-	int		lose;
+	int		end;
 	char	pre_tile;
 	char	*movement;
 	char	**crd;

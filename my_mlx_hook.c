@@ -34,10 +34,10 @@ int	animation_collectible(t_data *data)
 
 	gettimeofday(&time, NULL);
 	mini_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-	if ((mini_sec - data->map->frame) > 350 && !data->map->lose)
+	if ((mini_sec - data->map->frame) > 350 && !data->map->end)
 	{
 		data->map->frame = mini_sec;
-		data->map->index_enemie = (data->map->index_enemie + 1) % 3;
+		data->map->index_enemie = (data->map->index_enemie + 1) % 4;
 		data->map->index_coll = (data->map->index_coll + 1) % 4;
 		render_map(data->win, data->map);
 		if (data->map->movement)
