@@ -97,8 +97,10 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
 	data->map->crd[y][x] = 'P';
-	if (data->map->c == 0)
+	if (data->map->c == data->map->verif_c / 2)
 		data->map->index_exit = 1;
+	if (data->map->c == 0)
+		data->map->index_exit = 2;
 	render_map(data->win, data->map);
 	data->map->movement = str_movement(data, move_y, move_x);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,

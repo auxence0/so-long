@@ -33,7 +33,7 @@ typedef struct s_win
 	void	*player[4];
 	void	*enemie[3];
 	void	*collectible[4];
-	void	*exit[2];
+	void	*exit[3];
 	int		width_img;
 	int		height_img;
 }			t_win;

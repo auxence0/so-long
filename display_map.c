@@ -21,17 +21,11 @@ void	check_right_left(t_win *win, t_map *map, int y, int x)
 	else
 	{
 		if (x < map->p_x)
-		{
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
-				win->enemie[1], x * win->width_img, y
-				* win->height_img);
-		}
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->enemie[1],
+				x * win->width_img, y * win->height_img);
 		else
-		{
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
-				win->enemie[2], x * win->width_img, y
-				* win->height_img);
-		}
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->enemie[2],
+				x * win->width_img, y * win->height_img);
 	}
 }
 

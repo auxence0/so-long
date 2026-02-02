@@ -33,7 +33,7 @@ void	err_texture(t_win *win)
 	if (!win->collectible[0] || !win->collectible[1] || !win->collectible[2]
 		|| !win->collectible[3])
 		ft_putstr_fd("Collectible failed to load\n", 2);
-	if (!win->exit[0] || !win->exit[1])
+	if (!win->exit[0] || !win->exit[1] || !win->exit[2])
 		ft_putstr_fd("Exit failed to load\n", 2);
 	if (!win->floor)
 		ft_putstr_fd("Floor failed to load\n", 2);
@@ -44,7 +44,7 @@ void	err_texture(t_win *win)
 		ft_putstr_fd("Failed to load enemie\n", 2);
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
 		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
-		|| !win->exit[1] || !win->player[0] || !win->player[1]
+		|| !win->exit[1] || !win->exit[2] || !win->player[0] || !win->player[1]
 		|| !win->player[2] || !win->player[3] || !win->enemie[0]
 		|| !win->enemie[1] || !win->enemie[2] || !win->floor)
 		exit(1);
@@ -84,9 +84,11 @@ void	texture_img(t_win *win)
 			"texture/Bowser_right.xpm", &win->width_img, &win->height_img);
 	win->enemie[2] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/Bowser_left.xpm", &win->width_img, &win->height_img);
-	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_red.xpm",
+			&win->width_img, &win->height_img);
+	win->exit[1] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/tube_yellow.xpm", &win->width_img, &win->height_img);
-	win->exit[1] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_green.xpm",
+	win->exit[2] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_green.xpm",
 			&win->width_img, &win->height_img);
 	err_texture(win);
 }

@@ -49,6 +49,8 @@ void	destroy_img(t_data *data)
 		mlx_destroy_image(data->win->mlx_ptr, data->win->exit[0]);
 	if (data->win->exit[1])
 		mlx_destroy_image(data->win->mlx_ptr, data->win->exit[1]);
+	if (data->win->exit[2])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->exit[2]);
 }
 
 int	close_win(t_data *data)
