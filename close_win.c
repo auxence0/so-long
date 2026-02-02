@@ -35,7 +35,11 @@ void	destroy_players_collectibles(t_data *data)
 void	destroy_img(t_data *data)
 {
 	destroy_players_collectibles(data);
-	if (data->win->enemie)
+	if (data->win->enemie[0])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->enemie);
+	if (data->win->enemie[1])
+		mlx_destroy_image(data->win->mlx_ptr, data->win->enemie);
+	if (data->win->enemie[2])
 		mlx_destroy_image(data->win->mlx_ptr, data->win->enemie);
 	if (data->win->wall)
 		mlx_destroy_image(data->win->mlx_ptr, data->win->wall);

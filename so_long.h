@@ -31,7 +31,7 @@ typedef struct s_win
 	void	*wall;
 	void	*floor;
 	void	*player[4];
-	void	*enemie;
+	void	*enemie[3];
 	void	*collectible[4];
 	void	*exit[2];
 	int		width_img;
@@ -56,6 +56,7 @@ typedef struct s_map
 	int		index_player;
 	int		index_coll;
 	int		index_exit;
+	int		index_enemie;
 	int		lose;
 	char	pre_tile;
 	char	*movement;

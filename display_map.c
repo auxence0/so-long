@@ -12,6 +12,29 @@
 
 #include "so_long.h"
 
+void	check_right_left(t_win *win, t_map *map, int y, int x)
+{
+	if (map->index_enemie == 0)
+		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
+			win->enemie[map->index_enemie], x * win->width_img, y
+			* win->height_img);
+	else
+	{
+		if (x < map->p_x)
+		{
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
+				win->enemie[1], x * win->width_img, y
+				* win->height_img);
+		}
+		else
+		{
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
+				win->enemie[2], x * win->width_img, y
+				* win->height_img);
+		}
+	}
+}
+
 void	display_map(t_win *win, t_map *map, int y, int x)
 {
 	char	c;
@@ -36,8 +59,7 @@ void	display_map(t_win *win, t_map *map, int y, int x)
 			win->exit[map->index_exit], x * win->width_img, y
 			* win->height_img);
 	if (c == 'S')
-		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->enemie, x
-			* win->width_img, y * win->height_img);
+		check_right_left(win, map, y, x);
 }
 
 void	render_map(t_win *win, t_map *map)
