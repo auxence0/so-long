@@ -12,31 +12,6 @@
 
 #include "so_long.h"
 
-char	*str_movement(t_data *data, int y, int x)
-{
-	char	*str;
-
-	if (data->map->movement)
-		free(data->map->movement);
-	str = ft_itoa(data->map->moves);
-	if (!str)
-		close_win(data);
-	str = ft_strjoin_free_s2("move : ", str);
-	if (!str)
-		close_win(data);
-	if (x == 1)
-		str = ft_strjoin_free_s2("right, ", str);
-	else if (x == -1)
-		str = ft_strjoin_free_s2("left, ", str);
-	else if (y == 1)
-		str = ft_strjoin_free_s2("down, ", str);
-	else if (y == -1)
-		str = ft_strjoin_free_s2("up, ", str);
-	if (!str)
-		close_win(data);
-	return (str);
-}
-
 void	go_over_exit(t_data *data, int move_y, int move_x)
 {
 	int	y;
@@ -108,6 +83,19 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 	ft_printf("%s\n", data->map->movement);
 }
 
+void	game_lose(t_data *data)
+{
+	data->map->end = 1;
+	data->map->index_enemie = 1;
+	render_map(data->win, data->map);
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
+		data->map->movement);
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width
+		/ 2, data->win->height / 2, 0xFF0000, "YOU LOSE!");
+	mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
+	mlx_hook(data->win->win_ptr, 17, 0, close_win, data);
+}
+
 void	move_player(t_data *data, int mv_y, int mv_x)
 {
 	int	y;
@@ -118,15 +106,7 @@ void	move_player(t_data *data, int mv_y, int mv_x)
 	if (data->map->crd[y + mv_y][x + mv_x] == '1')
 		return ;
 	if (data->map->crd[y + mv_y][x + mv_x] == 'S')
-	{
-		data->map->end = 1;
-		data->map->index_enemie = 1;
-		render_map(data->win, data->map);
-		mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width
-			/ 2, data->win->height / 2, 0xFF0000, "YOU LOSE!");
-		mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
-		mlx_hook(data->win->win_ptr, 17, 0, close_win, data);
-	}
+		game_lose(data);
 	data->map->crd[y][x] = data->map->pre_tile;
 	if (data->map->crd[y + mv_y][x + mv_x] == '0' || data->map->crd[y + mv_y][x
 		+ mv_x] == 'C')

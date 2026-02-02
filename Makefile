@@ -18,12 +18,12 @@ SRC = main.c \
 	  malloc_map.c \
 	  free_tab.c \
 	  utils.c \
+	  utils_moves.c \
 	  verif_map.c \
 	  init_win.c \
 	  display_map.c \
 	  my_mlx_hook.c \
 	  moves.c \
-	  view_of_player.c \
 	  close_win.c
 
 NAME = so_long

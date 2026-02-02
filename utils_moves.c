@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   view_of_player.c                                   :+:      :+:    :+:   */
+/*   utils_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 23:47:39 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 16:36:23 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:17:35 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,29 @@ void	view_player(t_data *data, int y, int x)
 		data->map->index_player = 0;
 	else if (y == -1)
 		data->map->index_player = 1;
+}
+
+char	*str_movement(t_data *data, int y, int x)
+{
+	char	*str;
+
+	if (data->map->movement)
+		free(data->map->movement);
+	str = ft_itoa(data->map->moves);
+	if (!str)
+		close_win(data);
+	str = ft_strjoin_free_s2("move : ", str);
+	if (!str)
+		close_win(data);
+	if (x == 1)
+		str = ft_strjoin_free_s2("right, ", str);
+	else if (x == -1)
+		str = ft_strjoin_free_s2("left, ", str);
+	else if (y == 1)
+		str = ft_strjoin_free_s2("down, ", str);
+	else if (y == -1)
+		str = ft_strjoin_free_s2("up, ", str);
+	if (!str)
+		close_win(data);
+	return (str);
 }
