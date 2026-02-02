@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	open_file(char *file)
+int	open_file(char *file, t_map *map)
 {
 	int	fd;
 
@@ -20,6 +20,7 @@ int	open_file(char *file)
 	if (fd == -1)
 	{
 		ft_printf("%s: %s", strerror(errno), file);
+		free_tab(map->crd);
 		exit(1);
 	}
 	return (fd);
@@ -37,6 +38,7 @@ int	verif_len_line(char **map)
 		if (pre_len != ft_strlen(map[y]))
 		{
 			ft_putstr_fd("Error : the line sizes are not equal\n", 2);
+			free_tab(map);
 			exit(1);
 		}
 		pre_len = ft_strlen(map[y]);
@@ -61,7 +63,7 @@ void	malloc_lines(t_map *map, char *file)
 	char	*line;
 	int		i;
 
-	fd = open_file(file);
+	fd = open_file(file, map);
 	i = -1;
 	line = get_next_line(fd);
 	while (++i < map->height)
@@ -87,7 +89,7 @@ void	malloc_height(t_map *map, char *file)
 	int		fd;
 	char	*line;
 
-	fd = open_file(file);
+	fd = open_file(file, map);
 	line = get_next_line(fd);
 	while (1)
 	{
@@ -104,8 +106,8 @@ void	malloc_height(t_map *map, char *file)
 		exit(1);
 	}
 	map->crd = (char **)malloc(sizeof(char *) * (map->height + 1));
+	close(fd);
 	if (!map->crd)
 		exit(1);
-	close(fd);
 	map->crd[map->height] = 0;
 }

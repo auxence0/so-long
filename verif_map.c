@@ -87,6 +87,8 @@ void	verif_acces_collectible(t_map *map, int y, int x)
 			ft_putstr_fd("Error : The collectible is not accessible\n", 2);
 		else if (map->c - map->verif_c != 0)
 			ft_putstr_fd("Error : Collectibles are not accessible\n", 2);
+		free_tab(map->crd);
+		free_tab(map->tmp_map);
 		exit(1);
 	}
 }

@@ -26,7 +26,10 @@ char	**ft_strstrdup(char **tab, t_map *map)
 
 	res = malloc((sizeof(char *)) * (map->height + 1));
 	if (res == NULL)
-		exit(1);
+	{
+		free_tab(map->crd);
+		exit (1);
+	}
 	i = 0;
 	while (tab[i])
 	{
@@ -34,6 +37,7 @@ char	**ft_strstrdup(char **tab, t_map *map)
 		if (!res[i])
 		{
 			free_tab(res);
+			free_tab(map->crd);
 			exit(1);
 		}
 		i++;

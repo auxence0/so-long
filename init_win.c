@@ -26,7 +26,7 @@ void	err_init(t_win *win, t_map *map)
 	exit(1);
 }
 
-void	err_texture(t_win *win)
+void	err_texture(t_win *win, t_map *map)
 {
 	if (!win->wall)
 		ft_putstr_fd("Error : Wall failed to load\n", 2);
@@ -47,7 +47,10 @@ void	err_texture(t_win *win)
 		|| !win->exit[1] || !win->exit[2] || !win->player[0] || !win->player[1]
 		|| !win->player[2] || !win->player[3] || !win->enemie[0]
 		|| !win->enemie[1] || !win->enemie[2] || !win->floor)
+	{
+		free_tab(map->crd);
 		exit(1);
+	}
 }
 
 void	load_players_collectibles(t_win *win)
@@ -77,7 +80,7 @@ void	load_players_collectibles(t_win *win)
 			&win->height_img);
 }
 
-void	texture_img(t_win *win)
+void	texture_img(t_win *win, t_map *map)
 {
 	load_players_collectibles(win);
 	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall.xpm",
@@ -96,7 +99,7 @@ void	texture_img(t_win *win)
 			"texture/tube_yellow.xpm", &win->width_img, &win->height_img);
 	win->exit[2] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_green.xpm",
 			&win->width_img, &win->height_img);
-	err_texture(win);
+	err_texture(win, map);
 }
 
 void	init_win(t_win *win, t_map *map, char *file)
@@ -121,5 +124,5 @@ void	init_win(t_win *win, t_map *map, char *file)
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
 	if (!win->win_ptr)
 		err_init(win, map);
-	texture_img(win);
+	texture_img(win, map);
 }

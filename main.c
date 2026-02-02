@@ -20,7 +20,7 @@ int	correct_file(char *file)
 	i = 0;
 	while (file && file[i] != '/')
 		i++;
-	if (ft_strlen(&file[i]) < 6 && file[i] == '/')
+	if (ft_strlen(&file[i]) < 6 && file[i] == '/') /* a refaire pour regarder si c'est bien une extension*/ 
 		return (1);
 	i = 0;
 	while (file && file[i + 4])
