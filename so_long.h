@@ -71,6 +71,7 @@ typedef struct s_data
 int			open_file(char *file);
 int			close_win(t_data *data);
 int			handle_escape(int keycode, t_data *data);
+char		*ft_strjoin_free_s2(char const *s1, char *s2);
 char		**ft_strstrdup(char **tab, t_map *map);
 void		malloc_height(t_map *map, char *file);
 void		flood_fill(t_map *map, int y, int x);

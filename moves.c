@@ -21,17 +21,17 @@ char	*str_movement(t_data *data, int y, int x)
 	str = ft_itoa(data->map->moves);
 	if (!str)
 		close_win(data);
-	str = ft_strjoin("move : ", str);
+	str = ft_strjoin_free_s2("move : ", str);
 	if (!str)
 		close_win(data);
 	if (x == 1)
-		str = ft_strjoin("right, ", str);
+		str = ft_strjoin_free_s2("right, ", str);
 	else if (x == -1)
-		str = ft_strjoin("left, ", str);
+		str = ft_strjoin_free_s2("left, ", str);
 	else if (y == 1)
-		str = ft_strjoin("down, ", str);
+		str = ft_strjoin_free_s2("down, ", str);
 	else if (y == -1)
-		str = ft_strjoin("up, ", str);
+		str = ft_strjoin_free_s2("up, ", str);
 	if (!str)
 		close_win(data);
 	return (str);
@@ -85,12 +85,11 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 
 	y = data->map->p_y + move_y;
 	x = data->map->p_x + move_x;
-	if (data->map->pre_tile != 'E')
-		data->map->crd[data->map->p_y][data->map->p_x] = '0';
+	// if (data->map->pre_tile != 'E')
+	// 	data->map->crd[data->map->p_y][data->map->p_x] = '0';
 	if (data->map->crd[y][x] == 'C')
 		data->map->c -= 1;
 	view_player(data, move_y, move_x);
-	data->map->crd[y][x] = '0';
 	data->map->p_y = y;
 	data->map->p_x = x;
 	data->map->moves += 1;
