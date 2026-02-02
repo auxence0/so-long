@@ -12,6 +12,18 @@
 
 #include "so_long.h"
 
+int	correct_file(char *file)
+{
+	int	i;
+	int	res;
+
+	i = 0;
+	while (file && file[i + 4])
+		i++;
+	res = ft_strncmp(&file[i], ".ber", 4);
+	return (res);
+}
+
 void	parse_map(t_map *map, char *file)
 {
 	malloc_height(map, file);
@@ -31,9 +43,9 @@ int	main(int ac, char **av)
 
 	ft_bzero(&map, sizeof(t_map));
 	ft_bzero(&win, sizeof(t_win));
-	if (ac != 2)
+	if (ac != 2 || ft_strlen(av[1]) < 5 || correct_file(av[1]))
 	{
-		ft_putstr_fd("U need to give one arg\n", 2);
+		ft_putstr_fd("U need to give one arg : file.ber\n", 2);
 		return (1);
 	}
 	parse_map(&map, av[1]);
