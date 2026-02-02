@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# include <sys/time.h>
 
 typedef struct s_win
 {
@@ -51,7 +52,7 @@ typedef struct s_map
 	int		verif_c;
 	int		verif_e;
 	int		moves;
-	int		frame;
+	long	frame;
 	int		index_player;
 	int		index_coll;
 	int		index_exit;
