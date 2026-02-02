@@ -66,12 +66,15 @@ void	game_win(t_data *data, int move_y, int move_x)
 
 	x = data->map->p_x + move_x;
 	y = data->map->p_y + move_y;
-	view_player(data, move_y, move_x);
-	data->map->p_y = y;
-	data->map->p_x = x;
+	view_player(data, 1, 0);
 	data->map->moves += 1;
-	data->map->pre_tile = '0';
+	data->map->crd[y][x] = 'P';
+	data->map->pre_tile = 'E';
 	render_map(data->win, data->map);
+	data->map->movement = str_movement(data, move_y, move_x);
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
+		data->map->movement);
+	ft_printf("%s\n", data->map->movement);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width / 2,
 		data->win->height / 2, 0x00FF00, "YOU WIN!");
 	mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
@@ -85,8 +88,6 @@ void	take_collectible(t_data *data, int move_y, int move_x)
 
 	y = data->map->p_y + move_y;
 	x = data->map->p_x + move_x;
-	// if (data->map->pre_tile != 'E')
-	// 	data->map->crd[data->map->p_y][data->map->p_x] = '0';
 	if (data->map->crd[y][x] == 'C')
 		data->map->c -= 1;
 	view_player(data, move_y, move_x);
