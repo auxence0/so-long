@@ -18,6 +18,11 @@ int	correct_file(char *file)
 	int	res;
 
 	i = 0;
+	while (file && file[i] != '/')
+		i++;
+	if (ft_strlen(&file[i]) < 6 && file[i] == '/')
+		return (1);
+	i = 0;
 	while (file && file[i + 4])
 		i++;
 	res = ft_strncmp(&file[i], ".ber", 4);
@@ -45,7 +50,7 @@ int	main(int ac, char **av)
 	ft_bzero(&win, sizeof(t_win));
 	if (ac != 2 || ft_strlen(av[1]) < 5 || correct_file(av[1]))
 	{
-		ft_putstr_fd("U need to give one arg : file.ber\n", 2);
+		ft_putstr_fd("Error : U need to give one arg : file.ber\n", 2);
 		return (1);
 	}
 	parse_map(&map, av[1]);
