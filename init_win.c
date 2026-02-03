@@ -17,31 +17,30 @@ void	err_init(t_win *win, t_map *map)
 	if (win->mlx_ptr && win->win_ptr)
 		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
 	if (win->mlx_ptr)
-	{
 		mlx_destroy_display(win->mlx_ptr);
+	if (win->mlx_ptr)
 		free(win->mlx_ptr);
-	}
 	free_tab(map->crd);
-	ft_putstr_fd("Error : Failed to open window\n", 2);
+	ft_printf("Error : Failed to open window\n");
 	exit(1);
 }
 
 void	err_texture(t_win *win, t_map *map)
 {
 	if (!win->wall)
-		ft_putstr_fd("Error : Wall failed to load\n", 2);
+		ft_printf("Error : Wall failed to load\n");
 	if (!win->collectible[0] || !win->collectible[1] || !win->collectible[2]
 		|| !win->collectible[3] || !win->collectible[4] || !win->collectible[5])
-		ft_putstr_fd("Error : Collectible failed to load\n", 2);
+		ft_printf("Error : Collectible failed to load\n");
 	if (!win->exit[0] || !win->exit[1] || !win->exit[2])
-		ft_putstr_fd("Error : Exit failed to load\n", 2);
+		ft_printf("Error : Exit failed to load\n");
 	if (!win->floor)
-		ft_putstr_fd("Error : Floor failed to load\n", 2);
+		ft_printf("Error : Floor failed to load\n");
 	if (!win->player[0] || !win->player[1] || !win->player[2]
 		|| !win->player[3])
-		ft_putstr_fd("Error : Failed to load player_bottom\n", 2);
+		ft_printf("Error : Failed to load player_bottom\n");
 	if (!win->enemie[0] || !win->enemie[1] || !win->enemie[2])
-		ft_putstr_fd("Error : Failed to load enemie\n", 2);
+		ft_printf("Error : Failed to load enemie\n");
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
 		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
 		|| !win->exit[1] || !win->exit[2] || !win->player[0] || !win->player[1]
@@ -115,7 +114,7 @@ void	init_win(t_win *win, t_map *map, char *file)
 	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
 	if (win->height > max_height - 64 || win->width > max_width)
 	{
-		ft_putstr_fd("Error : The map is to wide\n", 2);
+		ft_printf("Error : The map is to wide\n");
 		mlx_destroy_display(win->mlx_ptr);
 		free(win->mlx_ptr);
 		free_tab(map->crd);
