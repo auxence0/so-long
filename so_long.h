@@ -70,7 +70,7 @@ typedef struct s_data
 	t_map	*map;
 }			t_data;
 
-int			open_file(char *file);
+int			open_file(char *file, t_map *map);
 int			close_win(t_data *data);
 int			handle_escape(int keycode, t_data *data);
 char		*ft_strjoin_free_s2(char const *s1, char *s2);

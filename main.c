@@ -18,11 +18,13 @@ int	correct_file(char *file)
 	int	res;
 
 	i = 0;
-	while (file && file[i] != '/')
+	while (file && file[i])
 		i++;
-	if (ft_strlen(&file[i]) < 6 && file[i] == '/') /* a refaire pour regarder si c'est bien une extension*/ 
+	i--;
+	while (file && i > 0 && file[i] != '/')
+		i--;
+	if (ft_strlen(&file[i]) < 6)
 		return (1);
-	i = 0;
 	while (file && file[i + 4])
 		i++;
 	res = ft_strncmp(&file[i], ".ber", 4);
