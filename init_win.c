@@ -115,8 +115,10 @@ void	init_win(t_win *win, t_map *map, char *file)
 	if (win->height > max_height - 64 || win->width > max_width)
 	{
 		ft_printf("Error : The map is to wide\n");
-		mlx_destroy_display(win->mlx_ptr);
-		free(win->mlx_ptr);
+		if (win->mlx_ptr)
+			mlx_destroy_display(win->mlx_ptr);
+		if (win->mlx_ptr)
+			free(win->mlx_ptr);
 		free_tab(map->crd);
 		exit(1);
 	}
