@@ -91,7 +91,7 @@ void	game_lose(t_data *data)
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		data->map->movement);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width
-		/ 2, data->win->height / 2, 0xFF0000, "YOU LOSE!");
+		/ 2, data->win->height / 2, 0xFF00FB, "YOU LOSE!");
 	mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
 	mlx_hook(data->win->win_ptr, 17, 0, close_win, data);
 }
