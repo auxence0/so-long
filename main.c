@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 
 	ft_bzero(&map, sizeof(t_map));
 	ft_bzero(&win, sizeof(t_win));
-	if (ac != 2 || ft_strlen(av[1]) < 5 || correct_file(av[1]))
+	if (ac != 2 || correct_file(av[1]))
 	{
 		ft_putstr_fd("Error : U need to give one arg : file.ber\n", 2);
 		return (1);
