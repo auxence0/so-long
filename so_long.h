@@ -81,7 +81,7 @@ void		flood_fill(t_map *map, int y, int x);
 void		malloc_lines(t_map *map, char *file);
 void		free_tab(char **tab);
 void		start_player(t_map *map);
-void		verif_walls(t_map *map, int y, int x);
+void		verif_walls(t_map *map);
 void		verif_obj_map(t_map *map);
 void		verif_acces_collectible(t_map *map, int y, int x);
 void		init_win(t_win *win, t_map *map, char *file);

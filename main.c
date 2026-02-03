@@ -35,7 +35,7 @@ void	parse_map(t_map *map, char *file)
 {
 	malloc_height(map, file);
 	malloc_lines(map, file);
-	verif_walls(map, 0, 0);
+	verif_walls(map);
 	verif_obj_map(map);
 	start_player(map);
 	map->tmp_map = ft_strstrdup(map->crd, map);
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 	ft_bzero(&win, sizeof(t_win));
 	if (ac != 2 || correct_file(av[1]))
 	{
-		ft_putstr_fd("Error : U need to give one arg : file.ber\n", 2);
+		ft_printf("Error : U need to give one arg : file.ber\n");
 		return (1);
 	}
 	parse_map(&map, av[1]);

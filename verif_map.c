@@ -17,7 +17,7 @@ void	error_wall_map(char **map)
 	int	i;
 
 	i = 0;
-	ft_putstr_fd("Error : The map is not properly surrounded by walls.\n", 2);
+	ft_printf("Error : The map is not properly surrounded by walls.\n");
 	if (!map)
 		exit(1);
 	while (map[i])
@@ -34,15 +34,15 @@ void	error_obj_map(t_map *map)
 	int	i;
 
 	if (map->e == 0)
-		ft_putstr_fd("Error : The exit is missing\n", 2);
+		ft_printf("Error : The exit is missing\n");
 	if (map->e > 1)
-		ft_putstr_fd("Error : There is more than 1 exit\n", 2);
+		ft_printf("Error : There is more than 1 exit\n");
 	if (map->c == 0)
-		ft_putstr_fd("Error : A collectible is missing\n", 2);
+		ft_printf("Error : A collectible is missing\n");
 	if (map->p == 0)
-		ft_putstr_fd("Error : The player is missing\n", 2);
+		ft_printf("Error : The player is missing\n");
 	if (map->p > 1)
-		ft_putstr_fd("Error : There is too many players\n", 2);
+		ft_printf("Error : There is too many players\n");
 	i = 0;
 	while (map->crd && map->crd[i])
 	{
@@ -82,41 +82,36 @@ void	verif_acces_collectible(t_map *map, int y, int x)
 	else
 	{
 		if (map->verif_e < 1)
-			ft_putstr_fd("Error : There is no exit accessible\n", 2);
+			ft_printf("Error : There is no exit accessible\n");
 		if (map->c - map->verif_c == 1)
-			ft_putstr_fd("Error : The collectible is not accessible\n", 2);
+			ft_printf("Error : The collectible is not accessible\n");
 		else if (map->c - map->verif_c != 0)
-			ft_putstr_fd("Error : Collectibles are not accessible\n", 2);
+			ft_printf("Error : Collectibles are not accessible\n");
 		free_tab(map->crd);
 		free_tab(map->tmp_map);
 		exit(1);
 	}
 }
 
-void	verif_walls(t_map *map, int x, int y)
+void	verif_walls(t_map *map)
 {
+	char	status;
+	int		y;
+	int		x;
+
+	status = 0;
 	x = 0;
-	while (map->crd[0] && map->crd[0][x])
-	{
-		if (map->crd[0][x++] != '1')
-			error_wall_map(map->crd);
-	}
 	y = 0;
-	while (map->crd[y] && map->crd[y][0])
+	while (x < map->width)
 	{
-		if (map->crd[y++][0] != '1')
-			error_wall_map(map->crd);
+		status |= (map->crd[0][x] != '1');
+		status |= (map->crd[map->height - 1][x++] != '1');
 	}
-	y = 0;
-	while (map->crd[y] && map->crd[y][map->width - 1])
+	while (y < map->height)
 	{
-		if (map->crd[y++][map->width - 1] != '1')
-			error_wall_map(map->crd);
+		status |= (map->crd[y][0] != '1');
+		status |= (map->crd[y++][map->width - 1] != '1');
 	}
-	x = 0;
-	while (map->crd[map->height - 1] && map->crd[map->height - 1][x])
-	{
-		if (map->crd[map->height - 1][x++] != '1')
-			error_wall_map(map->crd);
-	}
+	if (status)
+		error_wall_map(map->crd);
 }
