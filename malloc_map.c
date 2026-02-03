@@ -26,7 +26,7 @@ int	open_file(char *file, t_map *map)
 	return (fd);
 }
 
-int	verif_len_line(char **map)
+int	verif_len_line(char **map, int fd)
 {
 	size_t	pre_len;
 	int		y;
@@ -39,6 +39,7 @@ int	verif_len_line(char **map)
 		{
 			ft_printf("Error : the line sizes are not equal\n");
 			free_tab(map);
+			close (fd);
 			exit(1);
 		}
 		pre_len = ft_strlen(map[y]);
@@ -76,11 +77,12 @@ void	malloc_lines(t_map *map, char *file)
 		if (!map->crd[i])
 		{
 			free_tab(map->crd);
+			close(fd);
 			exit(1);
 		}
 		line = get_next_line(fd);
 	}
-	map->width = verif_len_line(map->crd);
+	map->width = verif_len_line(map->crd, fd);
 	close(fd);
 }
 
