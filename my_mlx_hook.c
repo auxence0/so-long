@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 19:04:48 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:33:13 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	my_mlx_hook(t_win *win, t_map *map)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
+	{
+		clear_all(data->win, data->map);
 		exit(1);
+	}
 	data->win = win;
 	data->map = map;
 	data->map->pre_tile = '0';

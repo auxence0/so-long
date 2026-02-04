@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:15:09 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 16:38:03 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:26:01 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@ void	error_wall_map(char **map)
 
 	i = 0;
 	ft_printf("Error : The map is not properly surrounded by walls.\n");
-	if (!map)
-		exit(1);
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	free_tab(map);
 	exit(1);
 }
 
@@ -44,13 +37,7 @@ void	error_obj_map(t_map *map)
 	if (map->p > 1)
 		ft_printf("Error : There is too many players\n");
 	i = 0;
-	while (map->crd && map->crd[i])
-	{
-		free(map->crd[i]);
-		i++;
-	}
-	if (map->crd)
-		free(map->crd);
+	free_tab(map->crd);
 	exit(1);
 }
 

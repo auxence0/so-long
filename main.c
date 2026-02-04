@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:16:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 16:06:08 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:27:21 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int ac, char **av)
 	}
 	parse_map(&map, av[1]);
 	init_win(&win, &map, av[1]);
+	load_texture_img(&win, &map);
 	render_map(&win, &map);
 	my_mlx_hook(&win, &map);
 	mlx_loop(win.mlx_ptr);

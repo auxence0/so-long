@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:44:04 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 18:25:02 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:31:57 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	check_right_left(t_win *win, t_map *map, int y, int x)
 {
 	if (map->index_enemie == 0)
 		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
-			win->enemie[map->index_enemie], x * win->width_img, y
+			win->patrol[map->index_enemie], x * win->width_img, y
 			* win->height_img);
 	else
 	{
 		if (x < map->p_x)
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->enemie[1],
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->patrol[1],
 				x * win->width_img, y * win->height_img);
 		else
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->enemie[2],
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->patrol[2],
 				x * win->width_img, y * win->height_img);
 	}
 }

@@ -6,24 +6,11 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 18:24:26 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:30:11 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	err_init(t_win *win, t_map *map)
-{
-	if (win->mlx_ptr && win->win_ptr)
-		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
-	if (win->mlx_ptr)
-		mlx_destroy_display(win->mlx_ptr);
-	if (win->mlx_ptr)
-		free(win->mlx_ptr);
-	free_tab(map->crd);
-	ft_printf("Error : Failed to open window\n");
-	exit(1);
-}
 
 void	err_texture(t_win *win, t_map *map)
 {
@@ -38,18 +25,15 @@ void	err_texture(t_win *win, t_map *map)
 		ft_printf("Error : Floor failed to load\n");
 	if (!win->player[0] || !win->player[1] || !win->player[2]
 		|| !win->player[3])
-		ft_printf("Error : Failed to load player_bottom\n");
-	if (!win->enemie[0] || !win->enemie[1] || !win->enemie[2])
+		ft_printf("Error : Failed to load player\n");
+	if (!win->patrol[0] || !win->patrol[1] || !win->patrol[2])
 		ft_printf("Error : Failed to load enemie\n");
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
 		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
 		|| !win->exit[1] || !win->exit[2] || !win->player[0] || !win->player[1]
-		|| !win->player[2] || !win->player[3] || !win->enemie[0]
-		|| !win->enemie[1] || !win->enemie[2] || !win->floor)
-	{
-		free_tab(map->crd);
-		exit(1);
-	}
+		|| !win->player[2] || !win->player[3] || !win->patrol[0]
+		|| !win->patrol[1] || !win->patrol[2] || !win->floor)
+		clear_all(win, map);
 }
 
 void	load_players_collectibles(t_win *win)
@@ -79,18 +63,18 @@ void	load_players_collectibles(t_win *win)
 			&win->height_img);
 }
 
-void	texture_img(t_win *win, t_map *map)
+void	load_texture_img(t_win *win, t_map *map)
 {
 	load_players_collectibles(win);
 	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall.xpm",
 			&win->width_img, &win->height_img);
 	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
 			&win->width_img, &win->height_img);
-	win->enemie[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
+	win->patrol[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
 			&win->width_img, &win->height_img);
-	win->enemie[1] = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->patrol[1] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/Bowser_right.xpm", &win->width_img, &win->height_img);
-	win->enemie[2] = mlx_xpm_file_to_image(win->mlx_ptr,
+	win->patrol[2] = mlx_xpm_file_to_image(win->mlx_ptr,
 			"texture/Bowser_left.xpm", &win->width_img, &win->height_img);
 	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_red.xpm",
 			&win->width_img, &win->height_img);
@@ -110,20 +94,22 @@ void	init_win(t_win *win, t_map *map, char *file)
 	win->width = (map->width) * 32;
 	win->mlx_ptr = mlx_init();
 	if (!win->mlx_ptr)
-		err_init(win, map);
+	{
+		ft_printf("Error : Failed to init mlx\n");
+		clear_all(win, map);
+		exit (1);
+	}
 	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
 	if (win->height > max_height - 64 || win->width > max_width)
 	{
-		ft_printf("Error : The map is to wide\n");
-		if (win->mlx_ptr)
-			mlx_destroy_display(win->mlx_ptr);
-		if (win->mlx_ptr)
-			free(win->mlx_ptr);
-		free_tab(map->crd);
+		clear_all(win, map);
 		exit(1);
 	}
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
 	if (!win->win_ptr)
-		err_init(win, map);
-	texture_img(win, map);
+	{
+		ft_printf("Error : Failed to init mlx\n");
+		clear_all(win, map);
+		exit (1);
+	}
 }

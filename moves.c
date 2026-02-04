@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 19:49:17 by asauvage          #+#    #+#             */
-/*   Updated: 2026/01/30 18:17:03 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:46:03 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 void	go_over_exit(t_data *data, int move_y, int move_x)
 {
-	int	y;
-	int	x;
-
-	y = data->map->p_y + move_y;
-	x = data->map->p_x + move_x;
-	if (data->map->pre_tile != 'E')
-		data->map->crd[data->map->p_y][data->map->p_x] = '0';
 	view_player(data, move_y, move_x);
-	data->map->p_y = y;
-	data->map->p_x = x;
+	data->map->p_y += move_y;
+	data->map->p_x += move_x;
 	data->map->pre_tile = 'E';
 	data->map->moves += 1;
-	data->map->crd[y][x] = 'P';
+	data->map->crd[data->map->p_y][data->map->p_x] = 'P';
 	render_map(data->win, data->map);
 	data->map->movement = str_movement(data, move_y, move_x);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
@@ -36,14 +29,9 @@ void	go_over_exit(t_data *data, int move_y, int move_x)
 
 void	game_win(t_data *data, int move_y, int move_x)
 {
-	int	y;
-	int	x;
-
-	x = data->map->p_x + move_x;
-	y = data->map->p_y + move_y;
 	view_player(data, 1, 0);
 	data->map->moves += 1;
-	data->map->crd[y][x] = 'P';
+	data->map->crd[data->map->p_y + move_y][data->map->p_x + move_x] = 'P';
 	data->map->pre_tile = 'E';
 	render_map(data->win, data->map);
 	data->map->movement = str_movement(data, move_y, move_x);
@@ -59,19 +47,14 @@ void	game_win(t_data *data, int move_y, int move_x)
 
 void	take_collectible(t_data *data, int move_y, int move_x)
 {
-	int	y;
-	int	x;
-
-	y = data->map->p_y + move_y;
-	x = data->map->p_x + move_x;
-	if (data->map->crd[y][x] == 'C')
+	if (data->map->crd[data->map->p_y + move_y][data->map->p_x + move_x] == 'C')
 		data->map->c -= 1;
 	view_player(data, move_y, move_x);
-	data->map->p_y = y;
-	data->map->p_x = x;
+	data->map->p_y += move_y;
+	data->map->p_x += move_x;
 	data->map->moves += 1;
 	data->map->pre_tile = '0';
-	data->map->crd[y][x] = 'P';
+	data->map->crd[data->map->p_y][data->map->p_x] = 'P';
 	if (data->map->c == data->map->verif_c / 2)
 		data->map->index_exit = 1;
 	if (data->map->c == 0)
@@ -90,8 +73,8 @@ void	game_lose(t_data *data)
 	render_map(data->win, data->map);
 	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20, 0x00FF00,
 		data->map->movement);
-	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width
-		/ 2, data->win->height / 2, 0xFF00FB, "YOU LOSE!");
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->win->width / 2,
+		data->win->height / 2, 0xFF00FB, "YOU LOSE!");
 	mlx_hook(data->win->win_ptr, 2, 1L << 0, handle_escape, data);
 	mlx_hook(data->win->win_ptr, 17, 0, close_win, data);
 }
