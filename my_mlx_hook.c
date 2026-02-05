@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/04 13:33:13 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:25:14 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,26 @@ int	handle_keypress(int keycode, t_data *data)
 	return (0);
 }
 
-int	animation_collectible(t_data *data)
+int	animation_patrol(t_data *data)
+{
+	struct timeval	time;
+	long			mini_sec;
+
+	gettimeofday(&time, NULL);
+	mini_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	if ((mini_sec - data->map->frame_patrol) > 400 && !data->map->end)
+	{
+		move_patrol(data);
+		data->map->frame_patrol = mini_sec;
+		render_map(data->win, data->map);
+		if (data->map->movement)
+			mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20,
+				0x00FF00, data->map->movement);
+	}
+	return (0);
+}
+
+int	animation(t_data *data)
 {
 	struct timeval	time;
 	long			mini_sec;
@@ -44,6 +63,7 @@ int	animation_collectible(t_data *data)
 			mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, 5, 20,
 				0x00FF00, data->map->movement);
 	}
+	animation_patrol(data);
 	return (0);
 }
 
@@ -62,5 +82,5 @@ void	my_mlx_hook(t_win *win, t_map *map)
 	data->map->pre_tile = '0';
 	mlx_hook(win->win_ptr, 17, 0, close_win, data);
 	mlx_hook(win->win_ptr, 2, 1L << 0, handle_keypress, data);
-	mlx_loop_hook(win->mlx_ptr, animation_collectible, data);
+	mlx_loop_hook(win->mlx_ptr, animation, data);
 }

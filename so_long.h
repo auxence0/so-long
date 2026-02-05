@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/04 13:29:33 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:10:48 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_map
 	int		verif_e;
 	int		moves;
 	long	frame;
+	long	frame_patrol;
 	int		index_player;
 	int		index_coll;
 	int		index_exit;
@@ -92,5 +93,7 @@ void		add_obj(char c, t_map *map);
 void		view_player(t_data *data, int x, int y);
 void		clear_all(t_win *win, t_map *map);
 void		load_texture_img(t_win *win, t_map *map);
+void		move_patrol(t_data *data);
+void		game_lose(t_data *data);
 
 #endif
