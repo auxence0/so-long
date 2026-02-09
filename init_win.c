@@ -85,6 +85,28 @@ void	load_texture_img(t_win *win, t_map *map)
 	err_texture(win, map);
 }
 
+void	err_mess(t_win *win, t_map *map, int max_height, int max_width)
+{
+	if (!win->mlx_ptr)
+	{
+		ft_printf("Error : Failed to init mlx\n");
+		clear_all(win, map);
+		exit (1);
+	}
+	else if (win->height > max_height - 64 || win->width > max_width)
+	{
+		ft_printf("Error : The map is too wide");
+		clear_all(win, map);
+		exit(1);
+	}
+	else if (!win->win_ptr)
+	{
+		ft_printf("Error : Failed to init mlx\n");
+		clear_all(win, map);
+		exit (1);
+	}
+}
+
 void	init_win(t_win *win, t_map *map, char *file)
 {
 	int	max_width;
@@ -93,24 +115,12 @@ void	init_win(t_win *win, t_map *map, char *file)
 	win->height = (map->height) * 64;
 	win->width = (map->width) * 64;
 	win->mlx_ptr = mlx_init();
-	if (!win->mlx_ptr)
-	{
-		ft_printf("Error : Failed to init mlx\n");
-		clear_all(win, map);
-		exit (1);
-	}
 	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
-	ft_printf("%d, %d\n", max_height, max_width);
+	if (!win->mlx_ptr)
+		err_mess(win, map, max_height, max_width);
 	if (win->height > max_height - 64 || win->width > max_width)
-	{
-		clear_all(win, map);
-		exit(1);
-	}
+		err_mess(win, map, max_height, max_width);
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
 	if (!win->win_ptr)
-	{
-		ft_printf("Error : Failed to init mlx\n");
-		clear_all(win, map);
-		exit (1);
-	}
+		err_mess(win, map, max_height, max_width);
 }
