@@ -66,7 +66,7 @@ void	load_players_collectibles(t_win *win)
 void	load_texture_img(t_win *win, t_map *map)
 {
 	load_players_collectibles(win);
-	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall_64_64.xpm",
+	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall_64.xpm",
 			&win->width_img, &win->height_img);
 	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor_64.xpm",
 			&win->width_img, &win->height_img);
@@ -90,8 +90,8 @@ void	init_win(t_win *win, t_map *map, char *file)
 	int	max_width;
 	int	max_height;
 
-	win->height = (map->height) * 32;
-	win->width = (map->width) * 32;
+	win->height = (map->height) * 64;
+	win->width = (map->width) * 64;
 	win->mlx_ptr = mlx_init();
 	if (!win->mlx_ptr)
 	{
@@ -100,6 +100,7 @@ void	init_win(t_win *win, t_map *map, char *file)
 		exit (1);
 	}
 	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
+	ft_printf("%d, %d\n", max_height, max_width);
 	if (win->height > max_height - 64 || win->width > max_width)
 	{
 		clear_all(win, map);
