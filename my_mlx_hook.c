@@ -74,7 +74,7 @@ void	my_mlx_hook(t_win *win, t_map *map)
 	data = malloc(sizeof(t_data));
 	if (!data)
 	{
-		clear_all(data->win, data->map);
+		clear_all(win, map);
 		exit(1);
 	}
 	data->win = win;

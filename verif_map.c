@@ -14,9 +14,6 @@
 
 void	error_wall_map(char **map)
 {
-	int	i;
-
-	i = 0;
 	ft_printf("Error : The map is not properly surrounded by walls.\n");
 	free_tab(map);
 	exit(1);
@@ -24,8 +21,6 @@ void	error_wall_map(char **map)
 
 void	error_obj_map(t_map *map)
 {
-	int	i;
-
 	if (map->e == 0)
 		ft_printf("Error : The exit is missing\n");
 	if (map->e > 1)
@@ -36,7 +31,6 @@ void	error_obj_map(t_map *map)
 		ft_printf("Error : The player is missing\n");
 	if (map->p > 1)
 		ft_printf("Error : There is too many players\n");
-	i = 0;
 	free_tab(map->crd);
 	exit(1);
 }

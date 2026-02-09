@@ -39,48 +39,48 @@ void	err_texture(t_win *win, t_map *map)
 void	load_players_collectibles(t_win *win)
 {
 	win->player[0] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/mario_bottom.xpm", &win->width_img, &win->height_img);
+			"texture/mario_bottom_64.xpm", &win->width_img, &win->height_img);
 	win->player[1] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/mario_top.xpm", &win->width_img, &win->height_img);
+			"texture/mario_top_64.xpm", &win->width_img, &win->height_img);
 	win->player[2] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/mario_right.xpm", &win->width_img, &win->height_img);
+			"texture/mario_right_64.xpm", &win->width_img, &win->height_img);
 	win->player[3] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/mario_left.xpm", &win->width_img, &win->height_img);
+			"texture/mario_left_64.xpm", &win->width_img, &win->height_img);
 	win->collectible[0] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_front.xpm", &win->width_img, &win->height_img);
+			"texture/collectible_front_64.xpm", &win->width_img, &win->height_img);
 	win->collectible[1] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_semi_right.xpm", &win->width_img,
+			"texture/collectible_semi_right_64.xpm", &win->width_img,
 			&win->height_img);
 	win->collectible[2] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_right.xpm", &win->width_img, &win->height_img);
+			"texture/collectible_right_64.xpm", &win->width_img, &win->height_img);
 	win->collectible[3] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_profile.xpm", &win->width_img,
+			"texture/collectible_profile_64.xpm", &win->width_img,
 			&win->height_img);
 	win->collectible[4] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_left.xpm", &win->width_img, &win->height_img);
+			"texture/collectible_left_64.xpm", &win->width_img, &win->height_img);
 	win->collectible[5] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/collectible_semi_left.xpm", &win->width_img,
+			"texture/collectible_semi_left_64.xpm", &win->width_img,
 			&win->height_img);
 }
 
 void	load_texture_img(t_win *win, t_map *map)
 {
 	load_players_collectibles(win);
-	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall.xpm",
+	win->wall = mlx_xpm_file_to_image(win->mlx_ptr, "texture/wall_64_64.xpm",
 			&win->width_img, &win->height_img);
-	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor.xpm",
+	win->floor = mlx_xpm_file_to_image(win->mlx_ptr, "texture/floor_64.xpm",
 			&win->width_img, &win->height_img);
-	win->patrol[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser.xpm",
+	win->patrol[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/Bowser_64.xpm",
 			&win->width_img, &win->height_img);
 	win->patrol[1] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/Bowser_right.xpm", &win->width_img, &win->height_img);
+			"texture/Bowser_right_64.xpm", &win->width_img, &win->height_img);
 	win->patrol[2] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/Bowser_left.xpm", &win->width_img, &win->height_img);
-	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_red.xpm",
+			"texture/Bowser_left_64.xpm", &win->width_img, &win->height_img);
+	win->exit[0] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_red_64.xpm",
 			&win->width_img, &win->height_img);
 	win->exit[1] = mlx_xpm_file_to_image(win->mlx_ptr,
-			"texture/tube_yellow.xpm", &win->width_img, &win->height_img);
-	win->exit[2] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_green.xpm",
+			"texture/tube_yellow_64.xpm", &win->width_img, &win->height_img);
+	win->exit[2] = mlx_xpm_file_to_image(win->mlx_ptr, "texture/tube_green_64.xpm",
 			&win->width_img, &win->height_img);
 	err_texture(win, map);
 }
