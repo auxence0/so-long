@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/04 13:30:11 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:09:45 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,12 @@ void	init_win(t_win *win, t_map *map, char *file)
 
 	win->height = (map->height) * 64;
 	win->width = (map->width) * 64;
+	max_width = 0;
+	max_height = 0;
 	win->mlx_ptr = mlx_init();
-	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
 	if (!win->mlx_ptr)
 		err_mess(win, map, max_height, max_width);
+	mlx_get_screen_size(win->mlx_ptr, &max_width, &max_height);
 	if (win->height > max_height - 64 || win->width > max_width)
 		err_mess(win, map, max_height, max_width);
 	win->win_ptr = mlx_new_window(win->mlx_ptr, win->width, win->height, file);
