@@ -6,13 +6,13 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 15:10:32 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/13 15:18:48 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:57:12 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	position_patrold(t_map *map)
+void	position_patrol(t_map *map)
 {
 	int	i;
 	int	x;
@@ -51,4 +51,5 @@ void	start_patrols(t_map *map)
 		free_tab(map->crd);
 		exit (1);
 	}
+	position_patrol(map);
 }

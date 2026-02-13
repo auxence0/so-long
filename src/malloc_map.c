@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/04 11:19:16 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:51:14 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ void	malloc_height(t_map *map, char *file)
 		exit(1);
 	}
 	close(fd);
-	map->crd = (char **)malloc(sizeof(char *) * (map->height + 1));
+	map->crd = ft_calloc(map->height + 1, sizeof(char *));
 	if (!map->crd)
 		exit(1);
 	map->crd[map->height] = 0;
+	get_next_line(-1);
 }

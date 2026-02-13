@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 11:17:25 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/04 13:34:37 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/13 16:01:18 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	clear_all(t_win *win, t_map *map)
 	free_tab(map->crd);
 	if (map->movement)
 		free(map->movement);
+	if (map->patrol_x)
+		free(map->patrol_x);
+	if (map->patrol_y)
+		free(map->patrol_y);
 }
 
 int	close_win(t_data *data)
