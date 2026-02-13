@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/13 15:51:14 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/13 16:53:23 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	verif_len_line(char **map, int fd)
 		{
 			ft_printf("Error : the line sizes are not equal\n");
 			free_tab(map);
-			close (fd);
+			close(fd);
 			exit(1);
 		}
 		pre_len = ft_strlen(map[y]);
@@ -70,7 +70,7 @@ void	malloc_lines(t_map *map, char *file)
 	while (++i < map->height)
 	{
 		check_malloc_line(map, line, fd);
-		if (line[ft_strlen(line) - 1] == '\n')
+		if (ft_strlen(line) && line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		map->crd[i] = ft_strdup(line);
 		free(line);
@@ -112,5 +112,4 @@ void	malloc_height(t_map *map, char *file)
 	if (!map->crd)
 		exit(1);
 	map->crd[map->height] = 0;
-	get_next_line(-1);
 }

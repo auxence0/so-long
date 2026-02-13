@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 15:10:32 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/13 15:57:12 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/13 16:30:14 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	position_patrol(t_map *map)
 
 void	start_patrols(t_map *map)
 {
-	map->patrol_x = malloc(sizeof(int) * map->e);
+	map->patrol_x = malloc(sizeof(int) * map->s);
 	if (!map->patrol_x)
 	{
 		free_tab(map->crd);
 		exit (1);
 	}
-	map->patrol_y = malloc(sizeof(int) * map->e);
+	map->patrol_y = malloc(sizeof(int) * map->s);
 	if (!map->patrol_y)
 	{
 		free_tab(map->crd);
