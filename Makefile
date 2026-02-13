@@ -6,15 +6,18 @@
 #    By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 17:05:10 by asauvage          #+#    #+#              #
-#    Updated: 2026/02/05 18:09:29 by asauvage         ###   ########.fr        #
+#    Updated: 2026/02/13 15:37:30 by asauvage         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -I.
 
-SRC = main.c \
+SRC_DIR = src
+OBJ_DIR = obj
+
+SRCS = main.c \
 	  malloc_map.c \
 	  free_tab.c \
 	  utils.c \
@@ -25,9 +28,13 @@ SRC = main.c \
 	  my_mlx_hook.c \
 	  moves.c \
 	  clear_all.c \
-	  patrol_move.c
+	  patrol_move.c \
+	  start_patrols.c
 
 NAME = so_long
+
+SRCS := $(SRCS:%=$(SRC_DIR)/%)
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 LIBFT_PATH = ./libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a
@@ -39,8 +46,6 @@ MLX_INC = $(MLX_PATH)
 
 INC = so_long.h
 
-OBJ = $(SRC:.c=.o)
-
 all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)
 
 $(LIBFT_LIB):
@@ -49,14 +54,15 @@ $(LIBFT_LIB):
 $(MLX_LIB):
 	make -C $(MLX_PATH)
 
-$(NAME): $(OBJ) $(LIBFT_LIB)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) -L$(MLX_PATH) -lXext -lX11 -lm -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_LIB) -L$(MLX_PATH) -lXext -lX11 -lm -o $(NAME)
 
-%.o: %.c $(INC)
-	$(CC) $(CFLAGS) -I. -I $(LIBFT_INC) -I$(MLX_INC) -c $< -o $@ -g
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 	make -C $(LIBFT_PATH) clean
 	make -C $(MLX_PATH) clean
 
@@ -66,4 +72,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

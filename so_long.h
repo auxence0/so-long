@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/05 18:10:48 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:25:55 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_map
 	int		zoom;
 	int		p_x;
 	int		p_y;
+	int		*patrol_x;
+	int		*patrol_y;
 	int		c;
 	int		e;
 	int		p;
@@ -95,5 +97,6 @@ void		clear_all(t_win *win, t_map *map);
 void		load_texture_img(t_win *win, t_map *map);
 void		move_patrol(t_data *data);
 void		game_lose(t_data *data);
+void		start_patrols(t_map *map);
 
 #endif
