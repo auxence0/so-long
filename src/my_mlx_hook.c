@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/11 15:53:05 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:09:26 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	animation_patrol(t_data *data)
 
 	gettimeofday(&time, NULL);
 	mini_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-	if ((mini_sec - data->map->frame_patrol) > 400 && !data->map->end)
+	if ((mini_sec - data->map->frame_patrol) > 700 && !data->map->end)
 	{
 		move_patrol(data);
 		data->map->frame_patrol = mini_sec;
