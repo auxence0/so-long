@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:15:09 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/04 11:26:01 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:57:51 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	verif_acces_collectible(t_map *map, int y, int x)
 
 void	verif_walls(t_map *map)
 {
-	char	status;
-	int		y;
-	int		x;
+	int	status;
+	int	y;
+	int	x;
 
 	status = 0;
 	x = 0;

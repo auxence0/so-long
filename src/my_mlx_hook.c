@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:54:15 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/15 16:28:49 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 17:20:27 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	handle_keypress(int keycode, t_data *data)
 int	animation_patrol(t_data *data)
 {
 	struct timeval	time;
-	long			mini_sec;
+	long			mili_sec;
 
 	gettimeofday(&time, NULL);
-	mini_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-	if ((mini_sec - data->map->frame_patrol) > 700 && !data->map->end)
+	mili_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	if ((mili_sec - data->map->frame_patrol) > 700 && !data->map->end)
 	{
-		data->map->frame_patrol = mini_sec;
+		data->map->frame_patrol = mili_sec;
 		if (move_patrol(data))
 			render_map(data->win, data->map);
 		if (data->map->movement)
@@ -49,13 +49,13 @@ int	animation_patrol(t_data *data)
 int	animation(t_data *data)
 {
 	struct timeval	time;
-	long			mini_sec;
+	long			mili_sec;
 
 	gettimeofday(&time, NULL);
-	mini_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-	if ((mini_sec - data->map->frame) > 350 && !data->map->end)
+	mili_sec = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	if ((mili_sec - data->map->frame) > 350 && !data->map->end)
 	{
-		data->map->frame = mini_sec;
+		data->map->frame = mili_sec;
 		data->map->index_enemie = (data->map->index_enemie + 1) % 4;
 		data->map->index_coll = (data->map->index_coll + 1) % 6;
 		render_map(data->win, data->map);

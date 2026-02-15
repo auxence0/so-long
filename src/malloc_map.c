@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:31:59 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/13 16:53:23 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:55:04 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	verif_len_line(char **map, int fd)
 
 	y = 1;
 	pre_len = ft_strlen(map[0]);
-	while (map && map[y])
+	while (map[y])
 	{
 		if (pre_len != ft_strlen(map[y]))
 		{
@@ -111,5 +111,4 @@ void	malloc_height(t_map *map, char *file)
 	map->crd = ft_calloc(map->height + 1, sizeof(char *));
 	if (!map->crd)
 		exit(1);
-	map->crd[map->height] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:49:45 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/15 16:41:34 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 17:09:13 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ void	err_texture(t_win *win, t_map *map)
 	if (!win->patrol[0] || !win->patrol[1] || !win->patrol[2])
 		ft_printf("Error : Failed to load enemie\n");
 	if (!win->wall || !win->collectible[0] || !win->collectible[1]
-		|| !win->collectible[2] || !win->collectible[3] || !win->exit[0]
-		|| !win->exit[1] || !win->exit[2] || !win->player[0] || !win->player[1]
+		|| !win->collectible[2] || !win->collectible[3] || !win->collectible[4]
+		|| !win->collectible[5] || !win->exit[0] || !win->exit[1]
+		|| !win->exit[2] || !win->player[0] || !win->player[1]
 		|| !win->player[2] || !win->player[3] || !win->patrol[0]
 		|| !win->patrol[1] || !win->patrol[2] || !win->floor)
+	{
 		clear_all(win, map);
+		exit (1);
+	}
 }
 
 void	load_players_collectibles(t_win *win)
