@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 17:30:06 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/15 16:18:29 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:28:20 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	random_direction(void)
 		init = 1;
 	}
 	random = (random * 1103515245 + 12345) & 2147483647;
-	return (random % 4);
+	return ((random >> 16) % 4);
 }
 
 int	patrol_new_place(t_data *data, int y, int x, int i)
@@ -33,7 +33,7 @@ int	patrol_new_place(t_data *data, int y, int x, int i)
 	if (data->map->crd[y][x] == 'P')
 	{
 		game_lose(data);
-		return (1);
+		return (2);
 	}
 	else if (data->map->crd[y][x] == '0')
 	{
@@ -45,7 +45,7 @@ int	patrol_new_place(t_data *data, int y, int x, int i)
 	return (0);
 }
 
-void	where_go_patrol(t_data *data, int y, int x, int i)
+int	where_go_patrol(t_data *data, int y, int x, int i)
 {
 	int		random;
 	char	status;
@@ -62,9 +62,10 @@ void	where_go_patrol(t_data *data, int y, int x, int i)
 			status |= patrol_new_place(data, y, x - 1, i);
 		else if (random == 3)
 			status |= patrol_new_place(data, y, x + 1, i);
-		if (status)
+		if (status == 1)
 			data->map->crd[y][x] = '0';
 	}
+	return (status);
 }
 
 int	check_movement(t_map *map, int y, int x)
@@ -80,7 +81,7 @@ int	check_movement(t_map *map, int y, int x)
 	return (0);
 }
 
-void	move_patrol(t_data *data)
+int	move_patrol(t_data *data)
 {
 	int	i;
 	int	x;
@@ -92,7 +93,11 @@ void	move_patrol(t_data *data)
 		x = data->map->patrol_x[i];
 		y = data->map->patrol_y[i];
 		if (check_movement(data->map, y, x))
-			where_go_patrol(data, y, x, i);
+		{
+			if (where_go_patrol(data, y, x, i) == 2)
+				return (0);
+		}
 		i++;
 	}
+	return (1);
 }

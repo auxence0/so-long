@@ -6,7 +6,7 @@
 /*   By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:17:00 by asauvage          #+#    #+#             */
-/*   Updated: 2026/02/13 15:25:55 by asauvage         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:28:38 by asauvage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_data
 int			open_file(char *file, t_map *map);
 int			close_win(t_data *data);
 int			handle_escape(int keycode, t_data *data);
+int			move_patrol(t_data *data);
 char		*ft_strjoin_free_s2(char const *s1, char *s2);
 char		*str_movement(t_data *data, int y, int x);
 char		**ft_strstrdup(char **tab, t_map *map);
@@ -95,7 +96,6 @@ void		add_obj(char c, t_map *map);
 void		view_player(t_data *data, int x, int y);
 void		clear_all(t_win *win, t_map *map);
 void		load_texture_img(t_win *win, t_map *map);
-void		move_patrol(t_data *data);
 void		game_lose(t_data *data);
 void		start_patrols(t_map *map);
 
