@@ -6,7 +6,7 @@
 #    By: asauvage <asauvage@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 17:05:10 by asauvage          #+#    #+#              #
-#    Updated: 2026/02/13 17:18:13 by asauvage         ###   ########.fr        #
+#    Updated: 2026/02/15 15:36:33 by asauvage         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJ_DIR)
 	make -C $(LIBFT_PATH) clean
 	make -C $(MLX_PATH) clean
 
